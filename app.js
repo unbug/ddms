@@ -1,7 +1,3 @@
-var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY || '9CWZIgDyX23LZJce3HA4IIeW2';
-var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET || 'hVKFMdVKSKHewAGdwSNaV1VId19iEXGP7DLjPqqHJtBAHmWXKJ';
-
-
 var express = require('express');
 var session = require('express-session');
 var path = require('path');
@@ -15,61 +11,20 @@ var mongoose = require('mongoose');
 var restify = require('express-restify-mongoose');
 var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/cmsexpress';
 var db = mongoose.connect(dbUrl, {safe: true});
-var reactView = require('express-react-views').createEngine();
 
 var models = require('./models');
 var routes = require('./routes/index');
+var apis = require('./apis/index');
 
+//middlewares
+var authorize = require('./middlewares/authorize');
+var writeLog = require('./middlewares/writeLog');
+var twitterLogin = require('./middlewares/twitterLogin');
 
-// Authorization
-var authorize = function (req, res, next) {
-  if (req.session && req.session.admin)
-    return next();
-  else
-    return res.send(401);
-};
-
-everyauth.debug = true;
-everyauth.twitter
-  .consumerKey(TWITTER_CONSUMER_KEY)
-  .consumerSecret(TWITTER_CONSUMER_SECRET)
-  .findOrCreateUser(function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
-    var promise = this.Promise();
-    process.nextTick(function () {
-      var _u = {
-        email: 'anonymous@none.com',
-        name: twitterUserMetadata.name,
-        password: accessTokenSecret,
-        twitter: twitterUserMetadata
-      };
-      if (_u.name === 'unbug') {
-        _u.admin = true;
-        session.user = _u;
-        session.admin = true;
-      }
-      var _ou = new models.User(_u);
-      _ou.save(function (error, result) {
-        if (error) {
-          console.log(error);
-          promise.fulfill(twitterUserMetadata);
-        }
-        console.log(result);
-        promise.fulfill(twitterUserMetadata);
-      });
-    });
-    return promise;
-    // return twitterUserMetadata
-  })
-  .redirectPath('/admin');
-
-// We need it because otherwise the session will be kept alive
-everyauth.everymodule.handleLogout(routes.user.logout);
-
-everyauth.everymodule.findUserById(function (user, callback) {
-  callback(user)
-});
+routes.user.genAdmin(models.User);
 
 var app = express();
+app.enable('trust proxy');
 app.locals.appTitle = "cms-express";
 
 app.use(function (req, res, next) {
@@ -80,10 +35,10 @@ app.use(function (req, res, next) {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'hbs');
-
 app.set('view engine', 'jsx');
-app.engine('jsx', reactView);
+app.engine('jsx', require('express-react-views').createEngine({ jsx: { harmony: true } }));
+
+twitterLogin(models,routes);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -102,21 +57,37 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 //route page
-app.get('/', routes.index);
+//app.get('/', routes.index);
+//user
+//CRUD
+app.get('/', routes.user.login);
 app.get('/login', routes.user.login);
 app.post('/login', routes.user.authenticate);
-app.get('/logout', routes.user.logout); //if you use everyauth, this /logout route is overwriting by everyauth automatically, therefore we use custom/additional handleLogout
-app.get('/admin', authorize, routes.article.admin);
-app.get('/post', authorize, routes.article.post);
-app.post('/post', authorize, routes.article.postArticle);
-app.get('/articles/:slug', routes.article.show);
+//if you use everyauth, this /logout route is overwriting by everyauth automatically, therefore we use custom/additional handleLogout
+app.get('/logout', writeLog, routes.user.logout);
+app.get('/admin', writeLog, authorize.editor, routes.admin.index);
+app.get('/users', writeLog, authorize.editor, routes.user.showList);
+app.get('/users/create', writeLog, authorize.editor, routes.user.showCreateUser);
+app.post('/users/create', writeLog, authorize.administrator, routes.user.createUser);
+app.get('/users/update/:id', writeLog, authorize.editor, routes.user.showUpdateUser);
+app.post('/users/update', writeLog, authorize.administrator, routes.user.updateUser);
+app.get('/users/delete/:id', writeLog, authorize.administrator, routes.user.deleteUser);
+//API
+app.get('/apis/v1/users', apis.user.getUsers);
+
+//form
+app.get('/forms', writeLog, authorize.editor, routes.form.showList);
+app.get('/forms/create', writeLog, authorize.editor, routes.form.showCreateForm);
+app.post('/forms/create', writeLog, authorize.editor, routes.form.createForm);
 
 //API
 var router = express.Router();
 restify.serve(router, models.User);
+restify.serve(router, models.AdminLog);
 restify.serve(router, models.Article);
+restify.serve(router, models.Form);
+restify.serve(router, models.FormData);
 app.use(router);
 
 // catch 404 and forward to error handler
@@ -127,7 +98,6 @@ app.use(function (req, res, next) {
 });
 
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
