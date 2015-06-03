@@ -9,7 +9,7 @@ var DefaultLayout = React.createClass({
   },
   render: function () {
     var scripts = this.props.scripts.map(function(src, idx) {
-      return <script type="text/jsx" key={idx} src={src}></script>
+      return <script type={/jsx/.test(src)?"text/jsx":"text/javascript"} key={idx} src={src}></script>
     });
 
     var styles = this.props.styles.map(function(src, idx) {
@@ -25,18 +25,18 @@ var DefaultLayout = React.createClass({
         <link href="/bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet"/>
         <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         {styles}
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+        <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+        <script src="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+        <script src="/js/sb-admin-2.js"></script>
+        <script src="/bower_components/react/JSXTransformer.js"></script>
+        <script src="/bower_components/react/react-with-addons.js"></script>
+        <script src="/bower_components/ReactiveElements/dist/reactive-elements.js"></script>
       </head>
       <body role="document" ontuchstart="">
       {this.props.children}
-      <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-      <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-      <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-      <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-      <script src="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-      <script src="/js/sb-admin-2.js"></script>
-      <script src="/bower_components/react/JSXTransformer.js"></script>
-      <script src="/bower_components/react/react-with-addons.js"></script>
-      <script src="/bower_components/ReactiveElements/dist/reactive-elements.js"></script>
       {scripts}
       </body>
       </html>
