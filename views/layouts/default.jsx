@@ -30,6 +30,7 @@ var DefaultLayout = React.createClass({
         <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
         <script src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
         <script src="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+        <script src="/js/Core.standalone.js"></script>
         <script src="/js/sb-admin-2.js"></script>
         <script src="/bower_components/react/JSXTransformer.js"></script>
         <script src="/bower_components/react/react-with-addons.js"></script>

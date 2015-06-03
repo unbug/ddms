@@ -403,3 +403,9 @@ http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-colum
 .col-bottom {
   vertical-align: bottom;
 }
+
+.highlight {
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-radius: 4px;
+}
