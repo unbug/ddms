@@ -1,3 +1,4 @@
+require('date-utils');
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 var Navigation = require('./components/navigation');
@@ -9,7 +10,7 @@ var ListBody = React.createClass({
         <tr>
           <td>{key.user?key.user.name:(key.userName||'Anonymous')}</td>
           <td>{key.log}</td>
-          <td>{key.createDateTime.toString()}</td>
+          <td>{key.createDateTime.toFormat('YYYY-MM-DD HH24:MI:SS')}</td>
         </tr>
       );
     });

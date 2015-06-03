@@ -43,8 +43,8 @@ twitterLogin(models,routes);
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
 app.use(cookieParser('/Eh@5Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tdPtAB2=]m+JsuhOX?Gd"FzK;F.G>'));
 app.use(session({secret: '/Eh@4Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tePtAB2=]m+JsuhOX?Gd"FzKL;F.G>'}));
@@ -80,6 +80,10 @@ app.get('/apis/v1/users', apis.user.getUsers);
 app.get('/forms', writeLog, authorize.editor, routes.form.showList);
 app.get('/forms/create', writeLog, authorize.editor, routes.form.showCreateForm);
 app.post('/forms/create', writeLog, authorize.editor, routes.form.createForm);
+app.get('/forms/update/:id', writeLog, authorize.editor, routes.form.showUpdateForm);
+app.post('/forms/update', writeLog, authorize.editor, routes.form.updateForm);
+app.get('/forms/delete/:id', writeLog, authorize.editor, routes.form.deleteForm);
+app.get('/forms/copy/:id', writeLog, authorize.editor, routes.form.copyForm);
 
 //API
 var router = express.Router();
