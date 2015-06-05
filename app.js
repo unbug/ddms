@@ -47,7 +47,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
 app.use(cookieParser('/Eh@5Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tdPtAB2=]m+JsuhOX?Gd"FzK;F.G>'));
-app.use(session({secret: '/Eh@4Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tePtAB2=]m+JsuhOX?Gd"FzKL;F.G>'}));
+app.use(session({secret: '/Eh@4Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tePtAB2=]m+JsuhOX?Gd"FzKL;F.G>',saveUninitialized: true, resave: true}));
 app.use(everyauth.middleware());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -74,7 +74,7 @@ app.get('/users/update/:id', writeLog, authorize.editor, routes.user.showUpdateU
 app.post('/users/update', writeLog, authorize.administrator, routes.user.updateUser);
 app.get('/users/delete/:id', writeLog, authorize.administrator, routes.user.deleteUser);
 //API
-app.get('/apis/v1/users', apis.user.getUsers);
+//app.get('/apis/v1/users', apis.user.getUsers);
 
 //form
 app.get('/forms', writeLog, authorize.editor, routes.form.showList);
@@ -84,8 +84,25 @@ app.get('/forms/update/:id', writeLog, authorize.editor, routes.form.showUpdateF
 app.post('/forms/update', writeLog, authorize.editor, routes.form.updateForm);
 app.get('/forms/delete/:id', writeLog, authorize.editor, routes.form.deleteForm);
 app.get('/forms/copy/:id', writeLog, authorize.editor, routes.form.copyForm);
-
 //API
+app.get('/apis/v1/form', apis.form.getForm);
+
+//form data
+app.get('/formdatas/:formid', writeLog, authorize.editor, routes.formData.showList);
+app.get('/formdatas/create/:formid', writeLog, authorize.editor, routes.formData.showCreateData);
+app.post('/formdatas/create/:formid', writeLog, authorize.editor, routes.formData.createData);
+app.get('/formdatas/update/:id', writeLog, authorize.editor, routes.formData.showUpdateData);
+app.post('/formdatas/update/:id', writeLog, authorize.editor, routes.formData.updateData);
+app.get('/formdatas/delete/:id', writeLog, authorize.editor, routes.formData.deleteData);
+//API
+app.get('/apis/v1/formdata', apis.formData.getDataByFormId);
+app.post('/apis/v1/formdata', apis.formData.postDataByFormId);
+
+
+
+/**
+
+//restify API
 var router = express.Router();
 restify.serve(router, models.User);
 restify.serve(router, models.AdminLog);
@@ -93,6 +110,7 @@ restify.serve(router, models.Article);
 restify.serve(router, models.Form);
 restify.serve(router, models.FormData);
 app.use(router);
+*/
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

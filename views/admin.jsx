@@ -33,7 +33,7 @@ var LogList = React.createClass({
             {/* /.panel-heading */}
             <div className="panel-body">
               <div className="dataTable_wrapper">
-                <table className="table table-striped table-bordered table-hover" id="dataTables-example">
+                <table className="table table-striped table-bordered table-hover table-condensed" id="dataTables-example">
                   <thead>
                   <tr>
                     <th>User</th>

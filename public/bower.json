@@ -1,0 +1,29 @@
+{
+  "name": "DDMS",
+  "version": "0.0.1",
+  "authors": [
+    "unbug <tidelgl@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-social": "~4.8.0",
+    "datatables-plugins": "~1.0.1",
+    "datatables-responsive": "~1.0.3",
+    "bootstrap": "~3.3.4",
+    "flot": "~0.8.3",
+    "flot.tooltip": "~0.8.4",
+    "flux": "~2.0.2",
+    "metisMenu": "~1.1.3",
+    "holderjs": "~2.4.1",
+    "morrisjs": "~0.5.1",
+    "react": "~0.13.3",
+    "ReactiveElements": "~0.4.9"
+  }
+}
