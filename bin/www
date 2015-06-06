@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 
+//prevent node.js from crashing
+process.on('uncaughtException', function (err) {
+  console.log("process uncaughtException error");
+  console.error(err);
+});
+
 /**
  * Module dependencies.
  */
 
 var app = require('../app');
-var debug = require('debug')('cmsexpress:server');
+var debug = require('debug')('ddms:server');
 var http = require('http');
 
 /**
@@ -88,3 +94,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+console.log('View your site on http://localhost:'+port);

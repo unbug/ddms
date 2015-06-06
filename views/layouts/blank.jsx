@@ -5,7 +5,7 @@ var BlankLayout = React.createClass({
     return (
       <html>
       <head>
-        <title>{this.props.title}</title>
+        <title>DDMS-{this.props.title}</title>
         <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
       </head>
       <body role="document" ontuchstart="">

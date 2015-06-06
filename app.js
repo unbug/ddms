@@ -9,7 +9,7 @@ var methodOverride = require('method-override');
 var everyauth = require('everyauth');
 var mongoose = require('mongoose');
 var restify = require('express-restify-mongoose');
-var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/cmsexpress';
+var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/ddms_db';
 var db = mongoose.connect(dbUrl, {safe: true});
 
 var models = require('./models');
@@ -21,11 +21,13 @@ var authorize = require('./middlewares/authorize');
 var writeLog = require('./middlewares/writeLog');
 var twitterLogin = require('./middlewares/twitterLogin');
 
+//first time runing the app
+//generate a admin user
 routes.user.genAdmin(models.User);
 
 var app = express();
 app.enable('trust proxy');
-app.locals.appTitle = "cms-express";
+app.locals.appTitle = "DDMS";
 
 app.use(function (req, res, next) {
   if (!models.User) return next(new Error("No models."));
@@ -49,6 +51,7 @@ app.use(methodOverride());
 app.use(cookieParser('/Eh@5Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tdPtAB2=]m+JsuhOX?Gd"FzK;F.G>'));
 app.use(session({secret: '/Eh@4Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tePtAB2=]m+JsuhOX?Gd"FzKL;F.G>',saveUninitialized: true, resave: true}));
 app.use(everyauth.middleware());
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
@@ -77,6 +80,7 @@ app.get('/users/delete/:id', writeLog, authorize.administrator, routes.user.dele
 //app.get('/apis/v1/users', apis.user.getUsers);
 
 //form
+//CRUD
 app.get('/forms', writeLog, authorize.editor, routes.form.showList);
 app.get('/forms/create', writeLog, authorize.editor, routes.form.showCreateForm);
 app.post('/forms/create', writeLog, authorize.editor, routes.form.createForm);
@@ -88,6 +92,7 @@ app.get('/forms/copy/:id', writeLog, authorize.editor, routes.form.copyForm);
 app.get('/apis/v1/form', apis.form.getForm);
 
 //form data
+//CRUD
 app.get('/formdatas/:formid', writeLog, authorize.editor, routes.formData.showList);
 app.get('/formdatas/create/:formid', writeLog, authorize.editor, routes.formData.showCreateData);
 app.post('/formdatas/create/:formid', writeLog, authorize.editor, routes.formData.createData);
@@ -99,18 +104,16 @@ app.get('/apis/v1/formdata', apis.formData.getDataByFormId);
 app.post('/apis/v1/formdata', apis.formData.postDataByFormId);
 
 
-
 /**
-
 //restify API
+//for debug only
 var router = express.Router();
 restify.serve(router, models.User);
 restify.serve(router, models.AdminLog);
-restify.serve(router, models.Article);
 restify.serve(router, models.Form);
 restify.serve(router, models.FormData);
 app.use(router);
-*/
+//*/
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -141,5 +144,6 @@ app.use(function (err, req, res, next) {
     error: {}
   });
 });
+
 
 module.exports = app;

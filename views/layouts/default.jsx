@@ -18,7 +18,7 @@ var DefaultLayout = React.createClass({
     return (
       <html>
       <head>
-        <title>{this.props.title}</title>
+        <title>DDMS-{this.props.title}</title>
         <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>
         <link href="/css/sb-admin-2.css" rel="stylesheet"/>

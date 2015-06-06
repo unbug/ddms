@@ -6,24 +6,21 @@ var _ = require('underscore'),
  */
 exports.genAdmin = function (User) {
   var bcrypt = require('bcrypt');
-  User.find({name: 'admin'},function(ferr,fres){
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash('adminpass', salt, function (err, hash) {
+  User.findOne({name: 'admin'},function(ferr,fres){
+    !fres && bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash('adminadmin', salt, function (err, hash) {
         var u = {
           email: 'admin@admin.com',
           name: 'admin',
           password: hash,
           role: 'Administrator'
         };
-        if(!fres){
-          new User(u).save();
-        }else{
-          User.update({_id: fres._id},u);
-        }
+        new User(u).save();
       });
     });
   });
 }
+
 exports.login = function (req, res, next) {
   res.render('login', {session: req.session});
 };
