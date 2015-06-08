@@ -156,7 +156,7 @@
         <div style={{paddingTop: '10px',marginBottom: '10px'}} className="highlight">
           <div className="form-group">
             <label className="col-xs-2 control-label">Name*</label>
-            <div className="col-xs-4">
+            <div className="col-xs-6">
               <input type="text" className="form-control input-sm" onChange={this.onNameChange} value={data.name} placeholder="letter&number"/>
             </div>
           </div>
@@ -254,7 +254,7 @@
         <form role="form" className="form-horizontal">
           <div className="form-group">
             <label htmlFor="title" className="col-xs-2 control-label">Title*</label>
-            <div className="col-xs-4">
+            <div className="col-xs-6">
               <input type="text" className="form-control input-sm" id="title" name="title" value={this.state.title} onChange={this.onTitleChange}/>
             </div>
           </div>
