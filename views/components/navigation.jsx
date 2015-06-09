@@ -13,7 +13,7 @@ var navigation = React.createClass({
             <span className="icon-bar"/>
             <span className="icon-bar"/>
           </button>
-          <a className="navbar-brand" href="/admin">DDMS</a>
+          <a className="navbar-brand" href="/admin">Data Drive Management System <span className="label label-default">Beta</span></a>
         </div>
         {/* /.navbar-header */}
         <ul className="nav navbar-top-links navbar-right">
