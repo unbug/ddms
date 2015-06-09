@@ -9,7 +9,6 @@ var ListBody = React.createClass({
       return (
         <tr>
           <td title={key._id.toString()}>{key._id.toString()}</td>
-          <td>{key.sid}</td>
           <td>{key.title}</td>
           <td>{key.user? key.user.name: 'Anonymous'}</td>
           <td>{key.createDateTime && key.createDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
@@ -57,7 +56,6 @@ module.exports = React.createClass({
                         <thead>
                         <tr>
                           <th>ID</th>
-                          <th title="short id">SID</th>
                           <th>Title</th>
                           <th>User</th>
                           <th>Created</th>
