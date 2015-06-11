@@ -22,7 +22,7 @@ Go to `http://localhost:3003` and login with `name : admin@admin.com` `password 
 
 ### Screenshots
 
-![1](/blob/master/public/images/logs.png)
-![2](/blob/master/public/images/forms.png)
-![3](/blob/master/public/images/docs.png)
+![1](https://github.com/unbug/ddms/blob/master/public/images/logs.png)
+![2](https://github.com/unbug/ddms/blob/master/public/images/forms.png)
+![3](https://github.com/unbug/ddms/blob/master/public/images/docs.png)
 
