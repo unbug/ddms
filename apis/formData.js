@@ -65,8 +65,17 @@ exports.getDataByFormId = function (req, res, next) {
 exports.postDataByFormId = function (req, res, next) {
   var id = req.body.formid,
       sid = req.body.formsid,
-      data = req.body.data,
+      success_url = req.body.success_url,
+      failure_url = req.body.failure_url,
+      data = req.body,
       p;
+
+  delete data.formid;
+  delete data.formsid;
+  delete data.callback;
+  delete data.success_url;
+  delete data.failure_url;
+
 
   function fn(fid){
     var _data = {
@@ -91,11 +100,23 @@ exports.postDataByFormId = function (req, res, next) {
 
   if(p){
     p.then(function(){
-      res.jsonp(jsonFormat({},1));
+      if(success_url){
+        res.redirect(success_url);
+      }else{
+        res.jsonp(jsonFormat({},1));
+      }
     }).catch(function (error) {
-      res.jsonp( jsonFormat({},0) );
+      if(failure_url){
+        res.redirect(failure_url);
+      }else{
+        res.jsonp( jsonFormat({},0) );
+      }
     });
   }else{
-    res.jsonp( jsonFormat({},0,'formid and data are required') );
+    if(failure_url){
+      res.redirect(failure_url);
+    }else{
+      res.jsonp( jsonFormat({},0,'formid are required') );
+    }
   }
 };

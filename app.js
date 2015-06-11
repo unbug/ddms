@@ -74,16 +74,26 @@ app.get('/users', writeLog, authorize.editor, routes.user.showList);
 app.get('/users/create', writeLog, authorize.editor, routes.user.showCreateUser);
 app.post('/users/create', writeLog, authorize.administrator, routes.user.createUser);
 app.get('/users/update/:id', writeLog, authorize.editor, routes.user.showUpdateUser);
-app.post('/users/update', writeLog, authorize.administrator, routes.user.updateUser);
+app.post('/users/update', writeLog, authorize.editor, routes.user.updateUser);
 app.get('/users/delete/:id', writeLog, authorize.administrator, routes.user.deleteUser);
 //API
 //app.get('/apis/v1/users', apis.user.getUsers);
 
+//project
+//CRUD
+app.get('/projects', writeLog, authorize.editor, routes.project.showList);
+app.get('/projects/create', writeLog, authorize.editor, routes.project.showCreateProject);
+app.post('/projects/create', writeLog, authorize.editor, routes.project.createProject);
+app.get('/projects/update/:id', writeLog, authorize.editor, routes.project.showUpdateProject);
+app.post('/projects/update', writeLog, authorize.editor, routes.project.updateProject);
+app.get('/projects/delete/:id', writeLog, authorize.editor, routes.project.deleteProject);
+
 //form
 //CRUD
-app.get('/forms', writeLog, authorize.editor, routes.form.showList);
-app.get('/forms/create', writeLog, authorize.editor, routes.form.showCreateForm);
-app.post('/forms/create', writeLog, authorize.editor, routes.form.createForm);
+app.get('/formsall', writeLog, authorize.editor, routes.form.showList);
+app.get('/forms/:projectid', writeLog, authorize.editor, routes.form.showListByProjectId);
+app.get('/forms/create/:projectid', writeLog, authorize.editor, routes.form.showCreateForm);
+app.post('/forms/create/:projectid', writeLog, authorize.editor, routes.form.createForm);
 app.get('/forms/update/:id', writeLog, authorize.editor, routes.form.showUpdateForm);
 app.post('/forms/update', writeLog, authorize.editor, routes.form.updateForm);
 app.get('/forms/delete/:id', writeLog, authorize.editor, routes.form.deleteForm);

@@ -4,7 +4,7 @@ var Navigation = require('../components/navigation');
 
 module.exports = React.createClass({
   render: function () {
-    var data = this.props.session;
+    var data = this.props.project;
     var scirpts = [
         '/js/components/Forms.add.js?jsx',
         '/ckeditor_standard/ckeditor.js',
@@ -21,10 +21,10 @@ module.exports = React.createClass({
             </div>
             <div id="form-wrapper"></div>
           </div>
-          <script dangerouslySetInnerHTML={{__html:`
-            var data = ${JSON.stringify(this.props)};
-          `}}/>
         </div>
+        <script dangerouslySetInnerHTML={{__html:`
+            window.__projectData = ${JSON.stringify(data)};
+          `}}/>
       </DefaultLayout>
     );
   }

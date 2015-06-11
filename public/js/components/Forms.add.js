@@ -26,8 +26,8 @@
 
   //actions
   var Actions = {
-    formList: '/forms',
-    create: '/forms/create'
+    formList: '/forms/'+window.__projectData._id,
+    create: '/forms/create/'+window.__projectData._id
   }
   var Mdl = Core.Class.Model,
     getJSON = Core.RequestHandler.getJSON,

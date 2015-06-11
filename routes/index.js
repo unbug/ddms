@@ -1,4 +1,5 @@
-exports.user = require('./users');
+exports.user = require('./user');
+exports.project = require('./project');
 exports.admin = require('./admin');
 exports.form = require('./form');
 exports.formData = require('./formData');

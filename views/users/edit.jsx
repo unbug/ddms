@@ -39,7 +39,7 @@ module.exports = React.createClass({
                 <input type="email" className="form-control" id="email" placeholder="User's E-mail" name="email" defaultValue={data.email}/>
               </div>
               <div className="form-group">
-                <label htmlFor="desc">Password</label>
+                <label htmlFor="password">Password</label>
                 <input type="text" className="form-control" id="password" placeholder="User's Password" name="password" />
               </div>
               <div className="form-group">

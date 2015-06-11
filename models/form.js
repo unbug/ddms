@@ -7,6 +7,7 @@ var Promise = require("bluebird"),
 
 var form = new Schema({
   user: {type: ObjectId, ref: 'User'},
+  project: {type: ObjectId, ref: 'Project'},
   sid: {type: String, unique: true,'default': shortid.generate },
   title: {
     type: String,
@@ -28,9 +29,17 @@ var form = new Schema({
 form.static({
   list: function (callback) {
     return this.find()
-      .populate('user',{_id: 1,name:1,email: 1,role: 1})
+      .populate('user',{_id: 1,name: 1,email: 1,role: 1})
+      .populate('project',{_id: 1,name: 1,desc: 1})
       .sort({_id: -1})
       .exec(callback)
+  },
+  listByProjectId: function (projectid,callback) {
+    return this.find({project: projectid})
+      .populate('user',{_id: 1,name: 1,email: 1,role: 1})
+      .populate('project',{_id: 1,name: 1,desc: 1})
+      .sort({_id: -1})
+      .exec(callback);
   }
 });
 

@@ -125,7 +125,7 @@ exports.createUser = function (req, res, next) {
   });
 };
 exports.updateUser = function (req, res, next) {
-  var body = req.body,
+  var body = req.body;
     u = {
       _id: body.id,
       email: body.email,
@@ -133,8 +133,10 @@ exports.updateUser = function (req, res, next) {
       role: body.role,
       password: body.password
     };
-
-  if (!u.name || !u.email){
+  if(!/Administrator/i.test(req.session.user.role) && u._id != req.session.user.id){
+    u.error = 'Editor can only update his own account.'
+  }
+  else if (!u.name || !u.email){
     u.error = 'Please enter your name,email and password.'
   }
   if(u.error){
@@ -145,6 +147,14 @@ exports.updateUser = function (req, res, next) {
     email: req.body.email
   }, function (ferror, fres) {
     if (!fres) {
+      var uu = {
+        email: body.email,
+        name: body.name
+      };
+      //only Administrator can update user role
+      if(/Administrator/i.test(req.session.user.role)){
+        uu.role = body.role;
+      }
       function afterFn (uerror, ures) {
         if (uerror) {
           u.password = body.password;
@@ -157,21 +167,12 @@ exports.updateUser = function (req, res, next) {
       if(body.password){
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(body.password, salt, function (err, hash) {
-            u.password = hash;
-            req.models.User.update({_id: u._id},{
-              email: body.email,
-              name: body.name,
-              role: body.role,
-              password: hash
-            },afterFn);
+            uu.password = hash;
+            req.models.User.update({_id: u._id},uu,afterFn);
           });
         });
       }else{
-        req.models.User.update({_id: u._id},{
-          email: body.email,
-          name: body.name,
-          role: body.role
-        },afterFn);
+        req.models.User.update({_id: u._id},uu,afterFn);
       }
     } else {
       u.error = 'Email is invalid or already taken!';

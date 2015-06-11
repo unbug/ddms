@@ -34,7 +34,6 @@ var DefaultLayout = React.createClass({
         <script src="/js/sb-admin-2.js"></script>
         <script src="/bower_components/react/JSXTransformer.js"></script>
         <script src="/bower_components/react/react-with-addons.js"></script>
-        <script src="/bower_components/ReactiveElements/dist/reactive-elements.js"></script>
       </head>
       <body role="document" ontuchstart="">
       {this.props.children}

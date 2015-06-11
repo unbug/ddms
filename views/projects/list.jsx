@@ -8,16 +8,15 @@ var ListBody = React.createClass({
     var list = this.props.data.map(function (key, index) {
       return (
         <tr>
-          <td title={key._id.toString()}>{key._id.toString()}</td>
-          <td>{key.title}</td>
-          <td>{key.project? key.project.name: 'Default'}</td>
+          <td>{key._id.toString()}</td>
+          <td>{key.name}</td>
           <td>{key.user? key.user.name: 'Anonymous'}</td>
           <td>{key.createDateTime && key.createDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
           <td>{key.updateDateTime && key.updateDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
           <td className="edit-td">
-            <a href={'/formdatas/'+key._id.toString()}><i className="fa fa-database fa-fw" title="edit"/>Data</a>
-            <a href={'/forms/update/'+key._id.toString()}><i className="fa fa-edit fa-fw" title="edit"/>Edit</a>
-            <a href={'/forms/copy/'+key._id.toString()}><i className="fa fa-edit fa-copy" title="copy"/>Copy</a></td>
+            <a href={'/forms/'+key._id.toString()}><i className="fa fa-table fa-fw" title="edit"/>Forms</a>
+            <a href={'/projects/update/'+key._id.toString()}><i className="fa fa-edit fa-fw" title="edit"/>Edit</a>
+          </td>
         </tr>
       );
     });
@@ -29,18 +28,17 @@ var ListBody = React.createClass({
 
 module.exports = React.createClass({
   render: function () {
-    var data = this.props.forms;
-    var projectid = this.props.project && this.props.project._id;
+    var data = this.props.projects;
     return (
-      <DefaultLayout title="Forms">
+      <DefaultLayout title="Projects">
         <div id="wrapper">
           {/* Navigation */}
           <Navigation></Navigation>
 
           <div id="page-wrapper">
             <div className="row row-same-height">
-              <div className="col-xs-10 col-xs-height"><h3>Forms</h3></div>
-              <div className="col-xs-2 col-xs-height col-middle"><a href={'/forms/create/'+projectid}
+              <div className="col-xs-10 col-xs-height"><h3>Projects</h3></div>
+              <div className="col-xs-2 col-xs-height col-middle"><a href="/projects/create"
                                                                     className="btn btn-default btn-circle pull-right"><i
                 className="fa fa-plus"></i></a></div>
             </div>
@@ -49,17 +47,16 @@ module.exports = React.createClass({
               <div className="col-lg-12">
                 <div className="panel panel-default">
                   <div className="panel-heading">
-                    Form List
+                    Project List
                   </div>
                   {/* /.panel-heading */}
                   <div className="panel-body">
                     <div className="dataTable_wrapper">
-                      <table className="table table-striped table-bordered table-hover table-condensed limit-table" id="dataTables-example">
+                      <table className="table table-striped table-bordered table-hover table-condensed" id="dataTables-example">
                         <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Title</th>
-                          <th>Project</th>
+                          <th>Name</th>
                           <th>User</th>
                           <th>Created</th>
                           <th>Last Update</th>

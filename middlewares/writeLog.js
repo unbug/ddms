@@ -12,7 +12,7 @@ var writeLog = function (req, res, next) {
     user = session && session.user || {};
 
   new req.models.AdminLog({
-    user: user._id || user.id,
+    user: user.id,
     userName: user.name,
     log: getLog(req)
   }).save();

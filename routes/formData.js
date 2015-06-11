@@ -17,7 +17,7 @@ exports.showCreateData = function (req, res, next) {
   var fid = req.params.formid;
   Promise.resolve( req.models.Form.findOne({_id: fid}) )
   .then(function(docs){
-    res.render('formdatas/add',{session: req.session,form: docs});
+    res.render('formdatas/add',{form: docs});
   }).catch(function (error) {
     return next(error);
   });
@@ -32,7 +32,6 @@ exports.showUpdateData = function (req, res, next) {
     return Promise.resolve( req.models.Form.findOne({_id: dprs.form}) );
   }).then(function(fprs){
       results.form = fprs;
-      results.session = req.session;
       res.render('formdatas/edit',results);
   }).catch(function (error) {
     return next(error);

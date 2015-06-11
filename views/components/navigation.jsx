@@ -30,8 +30,7 @@ var navigation = React.createClass({
               </li>
               <li className="divider"/>
               */}
-              <li><a href="/logout"><i className="fa fa-sign-out fa-fw"/> Logout</a>
-              </li>
+              <li><a href="/logout"><i className="fa fa-sign-out fa-fw"/> Logout</a></li>
             </ul>
             {/* /.dropdown-user */}
           </li>
@@ -48,7 +47,10 @@ var navigation = React.createClass({
                 <a href="/users"><i className="fa fa-users fa-fw"/> Users</a>
               </li>
               <li>
-                <a href="/forms"><i className="fa fa-edit fa-fw"/> Forms</a>
+                <a href="/projects"><i className="fa fa-tasks fa-fw"/> Projects</a>
+              </li>
+              <li>
+                <a href="/apidocs.html" target="_blank"><i className="fa fa-info-circle fa-fw"/> API Docs</a>
               </li>
             </ul>
           </div>
