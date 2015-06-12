@@ -7,8 +7,8 @@ module.exports = React.createClass({
     var data = this.props.project;
     var scirpts = [
         '/js/components/Forms.add.js?jsx',
-        '/ckeditor_standard/ckeditor.js',
-        '/ckeditor_standard/adapters/jquery.js',
+        '/ckeditor/ckeditor.js',
+        '/ckeditor/adapters/jquery.js',
         ];
     return (
       <DefaultLayout title="Create Form" scripts={scirpts}>
