@@ -5,13 +5,13 @@ var Navigation = require('../components/navigation');
 module.exports = React.createClass({
   render: function () {
     var data = this.props.form;
-    var scirpts = [
+    var scripts = [
         '/js/components/Forms.edit.js?jsx',
         '/ckeditor/ckeditor.js',
         '/ckeditor/adapters/jquery.js',
         ];
     return (
-      <DefaultLayout title="Edit Form" scripts={scirpts}>
+      <DefaultLayout title="Edit Form" scripts={scripts}>
         <div id="wrapper">
           {/* Navigation */}
           <Navigation></Navigation>

@@ -3,3 +3,4 @@ exports.Project = require('./project');
 exports.Form = require('./form');
 exports.FormData = require('./formData');
 exports.AdminLog = require('./adminLog');
+exports.Image = require('./image');

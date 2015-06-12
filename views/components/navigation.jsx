@@ -50,6 +50,9 @@ var navigation = React.createClass({
                 <a href="/projects"><i className="fa fa-tasks fa-fw"/> Projects</a>
               </li>
               <li>
+                <a href="/images"><i className="fa fa-photo fa-fw"/> Images</a>
+              </li>
+              <li>
                 <a href="/apidocs.html" target="_blank"><i className="fa fa-info-circle fa-fw"/> API Docs</a>
               </li>
             </ul>

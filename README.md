@@ -19,7 +19,14 @@ npm start
 ```
 Go to `http://localhost:3003` and login with `name : admin@admin.com` `password : adminadmin`
 
-### Thanks to 
+### Environment variables
+For upload image,DDMS only save image link,it does not provide upload image to it's own server,use other server to upload images.
+```js
+//upload: the server api to upload image
+process.env.DDMS_IMAGE_UPLOAD
+//server: the server api to access image
+process.env.DDMS_IMAGE_SERVER
+```
 
 ### Screenshots
 

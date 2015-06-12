@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image upload</title>
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>
+  <link href="/css/sb-admin-2.css" rel="stylesheet"/>
+  <link href="/bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet"/>
+  <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script>
+    window.upload_done = function(img){
+      document.querySelector('#res').src = img;
+    }
+  </script>
+</head>
+<body>
+  <iframe name="_if" id="_if" style="display: none;" src="javascript:void(0)"></iframe>
+  <form target="_if" method="POST" enctype="multipart/form-data" action="http://api.dejafashion.com/deja-fashion/upload?redirect_url=http://127.0.0.1:3003/upload_done.html">
+    File <input type="file" name="file">
+    <input type="hidden" name="callback" value="mycallback">
+    <button type="submit">Upload</button>
+  </form>
+  <img id="res">
+</body>
+</html>

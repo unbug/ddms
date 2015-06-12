@@ -24,6 +24,7 @@
     "holderjs": "~2.4.1",
     "morrisjs": "~0.5.1",
     "react": "~0.13.3",
-    "ReactiveElements": "~0.4.9"
+    "ReactiveElements": "~0.4.9",
+    "zeroclipboard": "~2.2.0"
   }
 }

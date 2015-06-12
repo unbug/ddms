@@ -113,6 +113,13 @@ app.get('/formdatas/delete/:id', writeLog, authorize.editor, routes.formData.del
 app.get('/apis/v1/formdata', apis.formData.getDataByFormId);
 app.post('/apis/v1/formdata', apis.formData.postDataByFormId);
 
+//image
+//CRUD
+app.get('/images/', writeLog, authorize.editor, routes.image.showList);
+app.get('/images/create/', writeLog, authorize.editor, routes.image.showCreateImage);
+app.post('/images/create/', writeLog, authorize.editor, routes.image.createImage);
+app.get('/images/delete/:id', writeLog, authorize.editor, routes.image.deleteImage);
+
 
 /**
 //restify API
