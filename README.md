@@ -17,7 +17,13 @@ bower install
 ```shell
 npm start
 ```
-Go to `http://localhost:3003` and login with `name : admin@admin.com` `password : adminadmin`
+Go to `http://localhost:3003` and login with `name : admin@admin.com` `password : adminadmin`;Access APIs with `http://localhost:3004`
+
+### Stop the app
+```shell
+sudo lsof -P | grep ':3003' | awk '{print $2}' | xargs kill -9
+sudo lsof -P | grep ':3004' | awk '{print $2}' | xargs kill -9
+```
 
 ### Environment variables
 For upload image,DDMS only save image link,it does not provide upload image to it's own server,use other server to upload images.

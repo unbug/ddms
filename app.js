@@ -76,8 +76,6 @@ app.post('/users/create', writeLog, authorize.administrator, routes.user.createU
 app.get('/users/update/:id', writeLog, authorize.editor, routes.user.showUpdateUser);
 app.post('/users/update', writeLog, authorize.editor, routes.user.updateUser);
 app.get('/users/delete/:id', writeLog, authorize.administrator, routes.user.deleteUser);
-//API
-//app.get('/apis/v1/users', apis.user.getUsers);
 
 //project
 //CRUD
@@ -98,8 +96,6 @@ app.get('/forms/update/:id', writeLog, authorize.editor, routes.form.showUpdateF
 app.post('/forms/update', writeLog, authorize.editor, routes.form.updateForm);
 app.get('/forms/delete/:id', writeLog, authorize.editor, routes.form.deleteForm);
 app.get('/forms/copy/:id', writeLog, authorize.editor, routes.form.copyForm);
-//API
-app.get('/apis/v1/form', apis.form.getForm);
 
 //form data
 //CRUD
@@ -109,9 +105,6 @@ app.post('/formdatas/create/:formid', writeLog, authorize.editor, routes.formDat
 app.get('/formdatas/update/:id', writeLog, authorize.editor, routes.formData.showUpdateData);
 app.post('/formdatas/update/:id', writeLog, authorize.editor, routes.formData.updateData);
 app.get('/formdatas/delete/:id', writeLog, authorize.editor, routes.formData.deleteData);
-//API
-app.get('/apis/v1/formdata', apis.formData.getDataByFormId);
-app.post('/apis/v1/formdata', apis.formData.postDataByFormId);
 
 //image
 //CRUD
@@ -119,18 +112,6 @@ app.get('/images/', writeLog, authorize.editor, routes.image.showList);
 app.get('/images/create/', writeLog, authorize.editor, routes.image.showCreateImage);
 app.post('/images/create/', writeLog, authorize.editor, routes.image.createImage);
 app.get('/images/delete/:id', writeLog, authorize.editor, routes.image.deleteImage);
-
-
-/**
-//restify API
-//for debug only
-var router = express.Router();
-restify.serve(router, models.User);
-restify.serve(router, models.AdminLog);
-restify.serve(router, models.Form);
-restify.serve(router, models.FormData);
-app.use(router);
-//*/
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
