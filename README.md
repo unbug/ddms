@@ -26,7 +26,7 @@ sudo lsof -P | grep ':3004' | awk '{print $2}' | xargs kill -9
 ```
 
 ### Environment variables
-For upload image,DDMS only save image link,it does not provide upload image to it's own server,use other server to upload images.
+For upload images,DDMS only save image's link,it does not provide upload image to it's own server,use other server to upload images.
 ```js
 //upload: the server api to upload image
 process.env.DDMS_IMAGE_UPLOAD
@@ -38,5 +38,6 @@ process.env.DDMS_IMAGE_SERVER
 
 ![1](https://github.com/unbug/ddms/blob/master/public/images/logs.png)
 ![2](https://github.com/unbug/ddms/blob/master/public/images/forms.png)
-![3](https://github.com/unbug/ddms/blob/master/public/images/docs.png)
+![3](https://github.com/unbug/ddms/blob/master/public/images/images.png)
+![4](https://github.com/unbug/ddms/blob/master/public/images/docs.png)
 
