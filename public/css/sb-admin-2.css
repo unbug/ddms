@@ -413,6 +413,9 @@ http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-colum
   border-radius: 4px;
 }
 
+.edit-td{
+  word-break: normal;
+}
 .edit-td a{
   margin-right: 8px;
 }
