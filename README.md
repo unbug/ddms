@@ -7,7 +7,9 @@ so you can do logical in your web pages.
 
 
 ### Install dependencies
+Make sure you have [mongodb](https://www.mongodb.org/),and with `Node.js` installed, run these commands in the root of the project.
 ```shell
+npm install -g bower
 npm install
 cd public
 bower install
