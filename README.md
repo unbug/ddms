@@ -2,7 +2,7 @@
 
 Data Drive Management System
 =================
-DDMS is a simple express app.It provides a easy way to create complex forms,
+DDMS is a simple express app.It provides an easy way to create complex forms,
 so you can do logical in your web pages.
 
 
