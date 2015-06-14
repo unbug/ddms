@@ -244,11 +244,11 @@
           var res = model.update.get();
           if(success && res && res.code){
             reloadWarning = false;
-            alert('Updated!');
+            alert('Done!');
+            window.location.reload();
           }else{
             alert('failed!');
           }
-          window.location.reload();
         });
       }else{
         alert('Title is required!');
