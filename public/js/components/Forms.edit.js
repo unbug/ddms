@@ -55,7 +55,8 @@
 
   var SubItem = React.createClass({
     getInitialState: function(){
-      return {name: '',title: ''}
+      var data = this.props.data;
+      return {name: data.name,title: data.title};
     },
     notifyParent: function(){
       this.props.handleItemChange(this.props.index,this.state);
