@@ -248,6 +248,7 @@
           }else{
             alert('failed!');
           }
+          window.location.reload();
         });
       }else{
         alert('Title is required!');
