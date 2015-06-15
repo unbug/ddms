@@ -92,14 +92,19 @@ exports.updateForm = function (req, res, next) {
 exports.deleteForm = function (req, res, next) {
   var id = req.params.id;
   var fpd = Promise.resolve( req.models.Form.findOne({_id: id}) );
-  var fp = Promise.resolve( req.models.Form.remove({_id: id}) );
-  var dp = Promise.resolve( req.models.FormData.remove({form: id}) );
-  Promise.all([fpd,fp,dp])
-    .then(function(docs){
-      res.redirect('/forms/'+docs[0].project);
-    }).catch(function (error) {
-      return next(error);
-    });
+
+  fpd.then(function(fpdres){
+    var fp = Promise.resolve( req.models.Form.remove({_id: id}) );
+    var dp = Promise.resolve( req.models.FormData.remove({form: id}) );
+    Promise.all([fp,dp])
+      .then(function(docs){
+        res.redirect('/forms/'+fpdres.project);
+      }).catch(function (error) {
+        return next(error);
+      });
+  }).catch(function (error) {
+    return next(error);
+  });
 };
 
 exports.copyForm = function (req, res, next) {
