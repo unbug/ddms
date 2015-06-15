@@ -20,7 +20,8 @@ exports.createImage = function (req, res, next) {
   if (!body.url){
     result.code = 0;
     result.msg = 'Url is required!';
-    res.send(result)
+    res.send(result);
+    return;
   }
   var image = {
     url: body.url

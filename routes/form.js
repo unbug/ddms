@@ -46,7 +46,7 @@ exports.createForm = function (req, res, next) {
   if (!body.title){
     result.code = 0;
     result.msg = 'Title is required!';
-    res.send(result)
+    res.send(result);
   }
   var form = {
     project: pid,
@@ -72,7 +72,8 @@ exports.updateForm = function (req, res, next) {
   if (!body.title){
     result.code = 0;
     result.msg = 'Title is required!';
-    res.send(result)
+    res.send(result);
+    return;
   }
   var form = {
     title: body.title,
