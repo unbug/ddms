@@ -15,7 +15,7 @@ var image = new Schema({
 image.static({
   list: function (callback) {
     return this.find()
-      .limit(200)
+      .limit(500)
       .sort({_id: -1})
       .exec(callback);
   }
