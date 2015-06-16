@@ -57,7 +57,7 @@ exports.authenticate = function (req, res, next) {
           role: user.role
         };
         req.models.User.update({_id: user._id},{lastLogin: Date.now()},function(uperror,upres){
-          res.redirect('/admin');
+          res.redirect('/projects');
         });
       } else {
         res.render('login', resResult);
