@@ -56,7 +56,7 @@ var Logout = React.createClass({
                 <h3 className="panel-title">Welcome {data.name},{/Register/i.test(data.role)?'your account is in review.':'have a nice day!'}</h3>
               </div>
               <div className="panel-body">
-                <a className="btn btn-lg btn-success btn-block" href="/admin">Admin</a>
+                <a className="btn btn-lg btn-success btn-block" href="/projects">Admin</a>
                 <a type="submit" className="btn btn-lg btn-danger btn-block" href="/logout">Logout</a>
               </div>
             </div>
