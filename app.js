@@ -79,46 +79,46 @@ app.post('/login', routes.user.authenticate);
 //if you use everyauth, this /logout route is overwriting by everyauth automatically, therefore we use custom/additional handleLogout
 app.get('/logout', writeLog, routes.user.logout);
 app.get('/admin', writeLog, authorize.editor, routes.admin.index);
-app.get('/users', writeLog, authorize.editor, routes.user.showList);
-app.get('/users/create', writeLog, authorize.editor, routes.user.showCreateUser);
+app.get('/users', authorize.editor, routes.user.showList);
+app.get('/users/create', authorize.editor, routes.user.showCreateUser);
 app.post('/users/create', writeLog, authorize.administrator, routes.user.createUser);
-app.get('/users/update/:id', writeLog, authorize.editor, routes.user.showUpdateUser);
+app.get('/users/update/:id', authorize.editor, routes.user.showUpdateUser);
 app.post('/users/update', writeLog, authorize.editor, routes.user.updateUser);
 app.get('/users/delete/:id', writeLog, authorize.administrator, routes.user.deleteUser);
 
 //project
 //CRUD
-app.get('/projects', writeLog, authorize.editor, routes.project.showList);
-app.get('/projects/create', writeLog, authorize.editor, routes.project.showCreateProject);
+app.get('/projects', authorize.editor, routes.project.showList);
+app.get('/projects/create', authorize.editor, routes.project.showCreateProject);
 app.post('/projects/create', writeLog, authorize.editor, routes.project.createProject);
-app.get('/projects/update/:id', writeLog, authorize.editor, routes.project.showUpdateProject);
+app.get('/projects/update/:id', authorize.editor, routes.project.showUpdateProject);
 app.post('/projects/update', writeLog, authorize.editor, routes.project.updateProject);
 app.get('/projects/delete/:id', writeLog, authorize.editor, routes.project.deleteProject);
 
 //form
 //CRUD
-app.get('/formsall', writeLog, authorize.editor, routes.form.showList);
-app.get('/forms/:projectid', writeLog, authorize.editor, routes.form.showListByProjectId);
-app.get('/forms/create/:projectid', writeLog, authorize.editor, routes.form.showCreateForm);
+app.get('/formsall', authorize.editor, routes.form.showList);
+app.get('/forms/:projectid', authorize.editor, routes.form.showListByProjectId);
+app.get('/forms/create/:projectid', authorize.editor, routes.form.showCreateForm);
 app.post('/forms/create/:projectid', writeLog, authorize.editor, routes.form.createForm);
-app.get('/forms/update/:id', writeLog, authorize.editor, routes.form.showUpdateForm);
+app.get('/forms/update/:id', authorize.editor, routes.form.showUpdateForm);
 app.post('/forms/update', writeLog, authorize.editor, routes.form.updateForm);
 app.get('/forms/delete/:id', writeLog, authorize.editor, routes.form.deleteForm);
 app.get('/forms/copy/:id', writeLog, authorize.editor, routes.form.copyForm);
 
 //form data
 //CRUD
-app.get('/formdatas/:formid', writeLog, authorize.editor, routes.formData.showList);
-app.get('/formdatas/create/:formid', writeLog, authorize.editor, routes.formData.showCreateData);
+app.get('/formdatas/:formid', authorize.editor, routes.formData.showList);
+app.get('/formdatas/create/:formid', authorize.editor, routes.formData.showCreateData);
 app.post('/formdatas/create/:formid', writeLog, authorize.editor, routes.formData.createData);
-app.get('/formdatas/update/:id', writeLog, authorize.editor, routes.formData.showUpdateData);
+app.get('/formdatas/update/:id', authorize.editor, routes.formData.showUpdateData);
 app.post('/formdatas/update/:id', writeLog, authorize.editor, routes.formData.updateData);
 app.get('/formdatas/delete/:id', writeLog, authorize.editor, routes.formData.deleteData);
 
 //image
 //CRUD
-app.get('/images/', writeLog, authorize.editor, routes.image.showList);
-app.get('/images/create/', writeLog, authorize.editor, routes.image.showCreateImage);
+app.get('/images/', authorize.editor, routes.image.showList);
+app.get('/images/create/', authorize.editor, routes.image.showCreateImage);
 app.post('/images/create/', writeLog, authorize.editor, routes.image.createImage);
 app.get('/images/delete/:id', writeLog, authorize.editor, routes.image.deleteImage);
 
