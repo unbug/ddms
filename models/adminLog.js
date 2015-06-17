@@ -21,7 +21,7 @@ adminLog.static({
   list: function (callback) {
     return this.find()
       .populate('user',{_id: 1,name:1,email: 1,role: 1})
-      .limit(1000)
+      .limit(500)
       .sort({_id: -1})
       .exec(callback);
   }
