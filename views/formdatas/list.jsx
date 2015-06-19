@@ -30,7 +30,7 @@ var ListBody = React.createClass({
       });
       return (
         <tr>
-          <td>{dindex}</td>
+          <td>{data.length-dindex}</td>
           {flist}
           <td>{dkey.createDateTime && dkey.createDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
           <td>{dkey.updateDateTime && dkey.updateDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
@@ -57,9 +57,12 @@ module.exports = React.createClass({
           <div id="page-wrapper">
             <div className="row row-same-height">
               <div className="col-xs-10 col-xs-height"><h3>Form Datas</h3></div>
-              <div className="col-xs-2 col-xs-height col-middle"><a href={"/formdatas/create/"+data.form._id}
-                                                                    className="btn btn-default btn-circle pull-right"><i
-                className="fa fa-plus"></i></a></div>
+              <div className="col-xs-2 col-xs-height col-middle">
+                <div className="pull-right">
+                  <a href={"/formdatas/create/"+data.form._id} className="btn btn-default btn-circle"><i className="fa fa-plus"></i></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<a href={"/formdatas/csv/"+data.form._id} className="btn btn-default btn-circle"><i className="fa fa-download"></i></a>
+                </div>
+              </div>
             </div>
             {/* /.row */}
             <div className="row">

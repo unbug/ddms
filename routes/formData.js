@@ -1,4 +1,5 @@
 var Promise = require("bluebird");
+var json2csv = require('json2csv');
 
 exports.showList = function (req, res, next) {
   var fid = req.params.formid;
@@ -90,4 +91,39 @@ exports.deleteData = function (req, res, next) {
   }).catch(function (error) {
     return next(error);
   });
+};
+
+exports.getCSV = function (req, res, next) {
+  var fid = req.params.formid;
+  var fp = Promise.resolve( req.models.Form.findOne({_id: fid}) );
+  var dp = Promise.resolve( req.models.FormData.listByFormId(fid) );
+
+  Promise.all([fp,dp])
+    .then(function(docs){
+      var schemata = docs[0].schemata,
+          fdata = docs[1],
+          fields,data;
+      res.setHeader('Content-Type', 'text/csv');
+      res.charset = res.charset || 'utf-8';
+      res.setHeader('Content-Disposition', 'attachment; filename=' +docs[0].title+ '.csv');
+
+      fields = schemata.map(function(key){
+        return key.name;
+      });
+
+      data = fdata.map(function(key){
+        var d = {};
+        fields.forEach(function (fk) {
+          d[fk] = key.data[fk]||'';
+        });
+        return d;
+      });
+
+      json2csv({ data: data, fields: fields }, function(cvserr, cvsres) {
+        if (cvserr) { return next(cvserr); }
+        res.send(cvsres);
+      });
+    }).catch(function (error) {
+      return next(error);
+    });
 };

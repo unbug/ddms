@@ -17,6 +17,7 @@
     "express-react-views": "^0.8.1",
     "express-restify-mongoose": "^0.7.5",
     "express-session": "^1.11.1",
+    "json2csv": "^2.4.1",
     "method-override": "^2.3.2",
     "mongoose": "^4.0.1",
     "morgan": "~1.5.1",

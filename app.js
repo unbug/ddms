@@ -113,6 +113,7 @@ app.post('/formdatas/create/:formid', writeLog, authorize.editor, routes.formDat
 app.get('/formdatas/update/:id', authorize.editor, routes.formData.showUpdateData);
 app.post('/formdatas/update/:id', writeLog, authorize.editor, routes.formData.updateData);
 app.get('/formdatas/delete/:id', writeLog, authorize.editor, routes.formData.deleteData);
+app.get('/formdatas/csv/:formid', writeLog, authorize.editor, routes.formData.getCSV);
 
 //image
 //CRUD
