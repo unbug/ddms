@@ -44,7 +44,7 @@ app.engine('jsx', require('express-react-views').createEngine({ jsx: { harmony: 
 twitterLogin(models,routes);
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
@@ -60,7 +60,6 @@ app.use(session({
   }
 }));
 app.use(everyauth.middleware());
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
