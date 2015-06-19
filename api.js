@@ -25,26 +25,12 @@ app.use(function (req, res, next) {
   return next();
 });
 
-// view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jsx');
-//app.engine('jsx', require('express-react-views').createEngine({ jsx: { harmony: true } }));
-
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
-//app.use(cookieParser('/Eh@5Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tdPtAB2=]m+JsuhOX?Gd"FzK;F.G>'));
-//app.use(session({secret: '/Eh@4Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tePtAB2=]m+JsuhOX?Gd"FzKL;F.G>',saveUninitialized: true, resave: true}));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-
-//app.use(function (req, res, next) {
-//  if (req.session && req.session.admin)
-//    res.locals.admin = true;
-//  next();
-//});
 
 //user
 //app.get('/apis/v1/users', apis.user.getUsers);
