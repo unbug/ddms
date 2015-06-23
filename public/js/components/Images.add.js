@@ -88,14 +88,11 @@
     function beforePostCreate(link,tags,callback){
       if(link){
         var now = Core.DateHandler.getMeta(new Date()),
-          dtags = [['default',now.year+'-'+now.month+'-'+now.day]];
-        tags = tags || '';
-        tags = $.trim(tags).split(',');
-        tags = tags.filter(function(key){
-          key = $.trim(key);
-          if(key){
-            return key;
-          }
+          dtags = [now.year+'-'+now.month+'-'+now.day];
+        tags = tags || 'default';
+        tags = (tags+'').trim().split(',');
+        tags = tags.filter(function(key,idx,nags){
+          return idx==nags.indexOf(key) && (key+'').trim();
         });
         tags = dtags.concat(tags).join(',');
         var data = {
