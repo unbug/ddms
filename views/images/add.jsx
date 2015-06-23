@@ -15,7 +15,7 @@ module.exports = React.createClass({
           <Navigation></Navigation>
           <div id="page-wrapper">
             <div className="row">
-              <div className="col-xs-12"><h3>Images / Add a new image</h3></div>
+              <div className="col-xs-12"><h3><a href="/images/">Images</a> / Add a new image</h3></div>
             </div>
             <iframe name="_if" id="_if" style={{display: 'none'}} src="javascript:void(0)"></iframe>
             <form role="form" id="upload_form" target="_if" method="POST" encType="multipart/form-data">

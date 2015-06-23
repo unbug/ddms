@@ -17,7 +17,7 @@ module.exports = React.createClass({
           <Navigation></Navigation>
           <div id="page-wrapper">
             <div className="row row-same-height">
-              <div className="col-xs-12 col-xs-height"><h3>Forms / Create a new form</h3></div>
+              <div className="col-xs-12 col-xs-height"><h3><a href={'/forms/'+data._id}>Forms</a> / Create a new form</h3></div>
             </div>
             <div id="form-wrapper"></div>
           </div>

@@ -13,7 +13,7 @@ var ListBody = React.createClass({
           <td>{key.email}</td>
           <td>{key.createDateTime && key.createDateTime.toFormat('YYYY-MM-DD HH24:MI:SS')}</td>
           <td>{key.lastLogin && key.lastLogin.toFormat('YYYY-MM-DD HH24:MI:SS')}</td>
-          <td className="edit-td"><a href={'/users/update/'+key._id.toString()}><i className="fa fa-edit fa-fw"/></a></td>
+          <td className="edit-td"><a href={'/users/update/'+key._id.toString()}><i className="fa fa-edit fa-fw"/>Edit</a></td>
         </tr>
       );
     });

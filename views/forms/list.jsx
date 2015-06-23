@@ -39,7 +39,7 @@ module.exports = React.createClass({
 
           <div id="page-wrapper">
             <div className="row row-same-height">
-              <div className="col-xs-10 col-xs-height"><h3>Forms</h3></div>
+              <div className="col-xs-10 col-xs-height"><h3><a href="/projects/">Projects</a> / Forms</h3></div>
               <div className="col-xs-2 col-xs-height col-middle"><a href={'/forms/create/'+projectid}
                                                                     className="btn btn-default btn-circle pull-right"><i
                 className="fa fa-plus"></i></a></div>

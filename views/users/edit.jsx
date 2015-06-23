@@ -12,7 +12,7 @@ module.exports = React.createClass({
           <Navigation></Navigation>
           <div id="page-wrapper">
             <div className="row row-same-height">
-              <div className="col-xs-10 col-xs-height"><h3>Users / Edit user</h3></div>
+              <div className="col-xs-10 col-xs-height"><h3><a href="/users/">Users</a> / Edit user</h3></div>
               <div className="col-xs-2 col-xs-height col-middle"><a href={'/users/delete/'+data._id}
                                                                     className="btn btn-default btn-circle pull-right"><i
                 className="fa fa-minus"></i></a></div>

@@ -12,7 +12,7 @@ module.exports = React.createClass({
           <Navigation></Navigation>
           <div id="page-wrapper">
             <div className="row row-same-height">
-              <div className="col-xs-12 col-xs-height"><h3>Projects / Edit project</h3></div>
+              <div className="col-xs-12 col-xs-height"><h3><a href="/projects/">Projects</a> / Edit project</h3></div>
             </div>
             <form role="form" method="POST" action="/projects/update">
               <div className="form-group">

@@ -56,11 +56,11 @@ module.exports = React.createClass({
           <Navigation></Navigation>
           <div id="page-wrapper">
             <div className="row row-same-height">
-              <div className="col-xs-10 col-xs-height"><h3>Form Datas</h3></div>
+              <div className="col-xs-10 col-xs-height"><h3><a href={"/forms/update/"+data.form._id}>Form</a> / Form Datas</h3></div>
               <div className="col-xs-2 col-xs-height col-middle">
                 <div className="pull-right">
-                  <a href={"/formdatas/create/"+data.form._id} className="btn btn-default btn-circle"><i className="fa fa-plus"></i></a>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<a href={"/formdatas/csv/"+data.form._id} className="btn btn-default btn-circle"><i className="fa fa-download"></i></a>
+                  <a href={"/formdatas/csv/"+data.form._id} className="btn btn-default btn-circle"><i className="fa fa-download"></i></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<a href={"/formdatas/create/"+data.form._id} className="btn btn-default btn-circle"><i className="fa fa-plus"></i></a>
                 </div>
               </div>
             </div>
