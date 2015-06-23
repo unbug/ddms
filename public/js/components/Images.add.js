@@ -49,15 +49,16 @@
     els.uploadForm.attr('action',Actions.uploadImage);
 
     els.addForm.on('click','button',function(){
-      Core.Event.trigger('onAddImage',els.addForm.find('#link').val());
+      Core.Event.trigger('onAddImage',els.addForm.find('#link').val(),els.addForm.find('#tags').val());
     });
 
     this.resetAddForm = function(){
       els.addForm.find('#link').val('');
+      els.addForm.find('#tags').val('');
       alert('Done!');
     }
     window.img_upload_done = function(link){
-      Core.Event.trigger('onImageUpload',link);
+      Core.Event.trigger('onImageUpload',link,els.uploadForm.find('#tags').val());
     };
   }
   function Controller(){
@@ -68,26 +69,38 @@
     Core.Event.on('onImageUpload',onImageUpload);
     Core.Event.on('onAddImage',onAddImage);
 
-    function onImageUpload(link){
+    function onImageUpload(link,tags){
       link = Core.localParam(link)['search']['image'];
       link = link.replace(Actions.uploadHost,Actions.serverHost);
 
-      beforePostCreate(link,function(success){
+      beforePostCreate(link,tags,function(success){
         var res = CTRL.model.create.get();
         if(success && res && res.code){
           window.location = Actions.list;
         }else{
-          alert('failed!');
+          alert('Failed!');
         }
       });
     }
-    function onAddImage(link){
-      beforePostCreate(link,CTRL.view.resetAddForm);
+    function onAddImage(link,tags){
+      beforePostCreate(link,tags,CTRL.view.resetAddForm);
     }
-    function beforePostCreate(link,callback){
+    function beforePostCreate(link,tags,callback){
       if(link){
+        var now = Core.DateHandler.getMeta(new Date()),
+          dtags = [['default',now.year+'-'+now.month+'-'+now.day]];
+        tags = tags || '';
+        tags = $.trim(tags).split(',');
+        tags = tags.filter(function(key){
+          key = $.trim(key);
+          if(key){
+            return key;
+          }
+        });
+        tags = dtags.concat(tags).join(',');
         var data = {
-          url: link
+          url: link,
+          tags: tags
         };
         CTRL.model.create.post(data,callback);
       }

@@ -2,10 +2,18 @@ var Promise = require("bluebird");
 var Actions = require('../helpers/Actions');
 
 exports.showList = function (req, res, next) {
-  req.models.Image.list(function (error, docs) {
-    if (error) return next(error);
-    res.render('images/list', {images: docs});
-  });
+  var tags = req.query.tags;
+  if(tags){
+    req.models.Image.listByTags(tags,function (error, docs) {
+      if (error) return next(error);
+      res.render('images/list', {images: docs});
+    });
+  }else{
+    req.models.Image.list(function (error, docs) {
+      if (error) return next(error);
+      res.render('images/list', {images: docs});
+    });
+  }
 };
 
 exports.showCreateImage = function (req, res, next) {
@@ -24,7 +32,8 @@ exports.createImage = function (req, res, next) {
     return;
   }
   var image = {
-    url: body.url
+    url: body.url,
+    tags: body.tags
   }
   req.models.Image.create(image, function (cerror, cres) {
     if (cerror){

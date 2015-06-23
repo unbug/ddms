@@ -103,9 +103,6 @@ exports.getCSV = function (req, res, next) {
       var schemata = docs[0].schemata,
           fdata = docs[1],
           fields,data;
-      res.setHeader('Content-Type', 'text/csv');
-      res.charset = res.charset || 'utf-8';
-      res.setHeader('Content-Disposition', 'attachment; filename=' +docs[0].title+ '.csv');
 
       fields = schemata.map(function(key){
         return key.name;
@@ -121,6 +118,10 @@ exports.getCSV = function (req, res, next) {
 
       json2csv({ data: data, fields: fields }, function(cvserr, cvsres) {
         if (cvserr) { return next(cvserr); }
+        res.set({
+          'Content-Type': 'text/csv; charset=utf-8',
+          'Content-Disposition': 'attachment; filename=' +docs[0].title+ '.csv'
+        });
         res.send(cvsres);
       });
     }).catch(function (error) {

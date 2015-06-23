@@ -23,6 +23,10 @@ module.exports = React.createClass({
                 <label htmlFor="file">Upload a new image</label>
                 <input type="file" className="form-control" id="file" name="file"/>
               </div>
+              <div className="form-group">
+                <label htmlFor="tags">Tags</label>
+                <input type="text" className="form-control" id="tags" name="tags" placeholder="tag1,tag2,tag3"/>
+              </div>
               <button type="submit" className="btn btn-default">Upload</button>
             </form>
             <div className="row row-same-height">
@@ -31,7 +35,11 @@ module.exports = React.createClass({
             <form role="form" id="add_form">
               <div className="form-group">
                 <label htmlFor="link">Add a new image link</label>
-                <input type="text" className="form-control" id="link" name="link"/>
+                <input type="text" className="form-control" id="link" name="link" placeholder="http://cdn.mydomain.com/images/test.jpg"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="tags">Tags</label>
+                <input type="text" className="form-control" id="tags" name="tags" placeholder="tag1,tag2,tag3"/>
               </div>
               <button type="button" className="btn btn-default">Submit</button>
             </form>

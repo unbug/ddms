@@ -6,6 +6,7 @@ var Promise = require("bluebird"),
 
 var image = new Schema({
   url: String,
+  tags: String,
   createDateTime: {
     type: Date,
     default: Date.now
@@ -15,6 +16,12 @@ var image = new Schema({
 image.static({
   list: function (callback) {
     return this.find()
+      .limit(500)
+      .sort({_id: -1})
+      .exec(callback);
+  },
+  listByTags: function (tags,callback) {
+    return this.find({tags: new RegExp(tags, 'i')})
       .limit(500)
       .sort({_id: -1})
       .exec(callback);

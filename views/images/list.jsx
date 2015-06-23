@@ -3,6 +3,20 @@ var React = require('react');
 var DefaultLayout = require('../layouts/default');
 var Navigation = require('../components/navigation');
 
+var ListTags = React.createClass({
+  render: function(){
+    var tags = this.props.data || '';
+    var list = tags.split(',').map(function (key, index) {
+      return (
+        <a href={'/images/?tags='+key} style={{marginRight: '8px;'}}>{key}</a>
+      );
+    });
+    return(
+      <li><p>Tags: </p><p>{list}</p></li>
+    )
+  }
+});
+
 var ListBody = React.createClass({
   render: function(){
     var list = this.props.data.map(function (key, index) {
@@ -16,6 +30,7 @@ var ListBody = React.createClass({
               <li><a target="_blank" href="javascript:void(0)" data-clipboard-text={key.url}><i className="fa fa-copy fa-fw"></i> Copy URL</a></li>
               <li><a target="_blank" href={key.url}><i className="fa fa-link fa-fw"></i> Open</a></li>
               <li><a href={'/images/delete/'+key._id}><i className="fa fa-times fa-w"></i> Delete</a></li>
+              <ListTags data={key.tags}/>
             </ul>
           </td>
         </tr>
