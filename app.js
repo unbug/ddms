@@ -2,7 +2,7 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-//var MongoStore = require('connect-mongo')(session);
+var MongoStore = require('connect-mongo')(session);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -51,7 +51,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride());
 app.use(cookieParser('/Eh@5Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tdPtAB2=]m+JsuhOX?Gd"FzK;F.G>'));
 app.use(session({
-  //store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
   secret: '/Eh@4Pfu/+"M+0[QDR3bJ$nd}<AZew]7y}4tePtAB2=]m+JsuhOX?Gd"FzKL;F.G>',
   saveUninitialized: true,
   resave: true,
