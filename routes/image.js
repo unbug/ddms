@@ -4,6 +4,14 @@ var Actions = require('../helpers/Actions');
 exports.showList = function (req, res, next) {
   var tags = req.query.tags;
   if(tags){
+    tags = tags.trim().split(',');
+    tags = tags.filter(function(key){
+      key = key.trim();
+      if(key){
+        return key;
+      }
+    });
+    tags = tags.join('|');
     req.models.Image.listByTags(tags,function (error, docs) {
       if (error) return next(error);
       res.render('images/list', {images: docs});
