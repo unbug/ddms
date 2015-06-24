@@ -1,5 +1,7 @@
+require('date-utils');
 var Promise = require("bluebird");
 var json2csv = require('json2csv');
+
 
 exports.showList = function (req, res, next) {
   var fid = req.params.formid;
@@ -116,8 +118,11 @@ exports.getCSV = function (req, res, next) {
         fields.forEach(function (fk) {
           d[fk] = key.data[fk]||'';
         });
+        d.Created = key.createDateTime.toFormat('YY-MM-DD HH24:MI:SS');
+        d.Updated = key.updateDateTime.toFormat('YY-MM-DD HH24:MI:SS');
         return d;
       });
+      fields = fields.concat(['Created','Updated']);
 
       json2csv({ data: data, fields: fields }, function(cvserr, cvsres) {
         if (cvserr) { return next(cvserr); }
