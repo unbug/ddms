@@ -104,6 +104,9 @@ exports.getCSV = function (req, res, next) {
           fdata = docs[1],
           fields,data;
 
+      schemata = schemata.filter(function(key){
+        return key.required;
+      });
       fields = schemata.map(function(key){
         return key.name;
       });

@@ -55,7 +55,8 @@
 
   var SubItem = React.createClass({
     getInitialState: function(){
-      return {name: '',title: ''}
+      var data = this.props.data;
+      return {name: data.name,title: data.title};
     },
     notifyParent: function(){
       this.props.handleItemChange(this.props.index,this.state);
@@ -111,7 +112,8 @@
   });
   var Item = React.createClass({
     getInitialState: function(){
-      return {name: '',title: '',child: []};
+      var data = this.props.data;
+      return {name: data.name,title: data.title,required: data.required,child: data.child || []};
     },
     componentDidMount: function(){
       $(this.getDOMNode()).on('click','.init-editor',handleEditor);
@@ -133,8 +135,12 @@
       this.state.title = e.target.value;
       this.notifyParent();
     },
+    onReqiuredChange: function(e){
+      this.state.required = e.target.checked;
+      this.notifyParent();
+    },
     handleAddItem: function(){
-      this.state.child.push({});
+      this.state.child.push({name: '',title: '',required: true});
       this.notifyParent();
     },
     handleItemRemove: function(index){
@@ -156,8 +162,12 @@
         <div style={{paddingTop: '10px',marginBottom: '10px'}} className="highlight">
           <div className="form-group">
             <label className="col-xs-2 control-label">Name*</label>
-            <div className="col-xs-6">
+            <div className="input-group col-xs-8" style={{paddingLeft: '15px;'}}>
               <input type="text" className="form-control input-sm" onChange={this.onNameChange} value={data.name} placeholder="letter&number"/>
+              <span className="input-group-addon">
+                Required &nbsp;&nbsp;
+                <input type="checkbox" onChange={this.onReqiuredChange} checked={data.required}/>
+              </span>
             </div>
           </div>
           <div className="form-group">
@@ -214,7 +224,7 @@
     },
     handleAddItem: function(){
       reloadWarning = true;
-      var nextItem = this.state.child.concat([{}]);
+      var nextItem = this.state.child.concat([{name: '',title: '',required: true,child: []}]);
       this.setState({child: nextItem});
     },
     handleItemRemove: function(index){

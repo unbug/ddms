@@ -8,6 +8,9 @@ var ListHead = React.createClass({
     var form = this.props.data.schemata || [];
     var list = [];
     list.push(<th>Order</th>);
+    form = form.filter(function(key){
+      return key.required;
+    });
     form.map(function (key, index) {
       list.push ( <th>{key.name}</th> );
     });
@@ -21,6 +24,10 @@ var ListBody = React.createClass({
   render: function(){
     var form = this.props.data.form.schemata || [];
     var data = this.props.data.data || {};
+
+    form = form.filter(function(key){
+      return key.required;
+    });
 
     var list = data.map(function (dkey, dindex) {
       var flist = form.map(function (fkey, findex) {

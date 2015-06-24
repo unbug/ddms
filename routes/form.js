@@ -130,11 +130,14 @@ exports.copyForm = function (req, res, next) {
   });
 };
 
-function formatFormSchemata(child){
+function formatFormSchemata(child,isSub){
   child = Array.isArray(child)?child:[];
   var filtered = [];
   filtered = child.filter(function(key){
-    key.child = formatFormSchemata(key.child);
+    if(!isSub){
+      key.child = formatFormSchemata(key.child,true);
+      key.required = key.required=='true';
+    }
     return key.name!='';
   });
   return filtered;
