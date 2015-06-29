@@ -1,9 +1,26 @@
 {
   "name": "ddms",
-  "version": "0.0.3",
+  "version": "0.0.4",
+  "description": "Data Drive Management System",
+  "license": "MIT",
+  "main": "bin/www",
+  "repository": "unbug/ddms",
+  "author": {
+    "name": "unbug",
+    "email": "tidelgl@gmail.com",
+    "url": "https://github.com/unbug"
+  },
   "scripts": {
     "start": "node ./bin/www & node ./bin/api"
   },
+  "keywords": [
+    "Form System",
+    "CMS",
+    "DDMS",
+    "reactjs",
+    "express app",
+    "Data Drive Management System"
+  ],
   "dependencies": {
     "bcrypt": "^0.8.3",
     "bluebird": "^2.9.27",
