@@ -1,5 +1,3 @@
- > Developer preview.
-
 Data Drive Management System
 =================
 DDMS is a simple express app.It provides an easy way to create complex forms,
@@ -19,7 +17,7 @@ bower install
 ```shell
 npm start
 ```
-Go to `http://localhost:3003` and login with `name : admin@admin.com` `password : adminadmin`;Access APIs with `http://localhost:3004`
+Go to `http://localhost:3003` and login with `name : admin@admin.com` and `password : adminadmin`;Access APIs with `http://localhost:3004`
 
 ### Stop the app
 ```shell
