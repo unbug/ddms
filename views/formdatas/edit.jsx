@@ -11,7 +11,7 @@ module.exports = React.createClass({
         <div className="form-group">
           <label htmlFor={key.name} className="col-xs-2 control-label">{key.name}</label>
           <div className="col-xs-10">
-            <input type="text" className="form-control input-sm" id={key.name} name={key.name} defaultValue={ddata[key.name]}/>
+            <input type="text" className="form-control input-sm" id={key.name} name={key.name} defaultValue={ddata?ddata[key.name]:''}/>
           </div>
         </div>
       )
