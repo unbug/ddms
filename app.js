@@ -92,7 +92,7 @@ app.get('/projects/create', authorize.editor, routes.project.showCreateProject);
 app.post('/projects/create', writeLog, authorize.editor, routes.project.createProject);
 app.get('/projects/update/:id', authorize.editor, routes.project.showUpdateProject);
 app.post('/projects/update', writeLog, authorize.editor, routes.project.updateProject);
-app.get('/projects/delete/:id', writeLog, authorize.editor, routes.project.deleteProject);
+app.get('/projects/delete/:id', writeLog, authorize.administrator, routes.project.deleteProject);
 
 //form
 //CRUD
@@ -102,7 +102,7 @@ app.get('/forms/create/:projectid', authorize.editor, routes.form.showCreateForm
 app.post('/forms/create/:projectid', writeLog, authorize.editor, routes.form.createForm);
 app.get('/forms/update/:id', authorize.editor, routes.form.showUpdateForm);
 app.post('/forms/update', writeLog, authorize.editor, routes.form.updateForm);
-app.get('/forms/delete/:id', writeLog, authorize.editor, routes.form.deleteForm);
+app.get('/forms/delete/:id', writeLog, authorize.administrator, routes.form.deleteForm);
 app.get('/forms/copy/:id', writeLog, authorize.editor, routes.form.copyForm);
 
 //form data
