@@ -105,7 +105,7 @@ var config = [
   }
 
 ];
-var anims = ["callout.bounce", "callout.shake", "callout.flash", "callout.pulse", "callout.swing", "callout.tada",
+var anims = ['Animation.none',"callout.bounce", "callout.shake", "callout.flash", "callout.pulse", "callout.swing", "callout.tada",
   "transition.fadeIn", "transition.fadeOut",
   "transition.flipXIn", "transition.flipXOut", "transition.flipYIn", "transition.flipYOut",
   "transition.flipBounceXIn", "transition.flipBounceXOut", "transition.flipBounceYIn", "transition.flipBounceYOut",
@@ -120,7 +120,7 @@ var anims = ["callout.bounce", "callout.shake", "callout.flash", "callout.pulse"
 var els = ['p'];
 anims.forEach(function(akey){
   els.forEach(function(ekey){
-    config.push( { name: akey, element: ekey, attributes: { 'data-velocity-effect': akey } } );
+    config.push( { name: akey, element: ekey, attributes: { 'data-velocity-effect': akey=='Animation.none'?'none':akey } } );
   });
 });
 CKEDITOR.stylesSet.add( 'default',  config);
