@@ -117,12 +117,15 @@ var anims = ["callout.bounce", "callout.shake", "callout.flash", "callout.pulse"
   "transition.slideUpIn", "transition.slideUpOut", "transition.slideDownIn", "transition.slideDownOut", "transition.slideLeftIn", "transition.slideLeftOut", "transition.slideRightIn", "transition.slideRightOut", "transition.slideUpBigIn", "transition.slideUpBigOut", "transition.slideDownBigIn", "transition.slideDownBigOut", "transition.slideLeftBigIn", "transition.slideLeftBigOut", "transition.slideRightBigIn", "transition.slideRightBigOut",
   "transition.perspectiveUpIn", "transition.perspectiveUpOut", "transition.perspectiveDownIn", "transition.perspectiveDownOut", "transition.perspectiveLeftIn", "transition.perspectiveLeftOut", "transition.perspectiveRightIn", "transition.perspectiveRightOut"];
 var offsets = ['10%','20%','30%','40%','50%','60%','70%','80%','90%','100%'];
-config.push( { name: 'Animation.none', element: 'p', attributes: { 'data-velocity-effect': 'none' } } );
-anims.forEach(function(akey){
+function addEffect(akey){
   config.push( { name: akey, element: 'p', attributes: { 'data-velocity-effect': akey,'data-velocity-offset': 'default' } } );
   offsets.forEach(function(okey){
     config.push( { name: akey+'-offset'+okey, element: 'p', attributes: { 'data-velocity-effect': akey ,'data-velocity-offset': okey} } );
   });
-});
+}
+config.push( { name: 'Animation.none', element: 'p', attributes: { 'data-velocity-effect': 'none' } } );
+anims.filter(function(key){return !/Out/.test(key)}).forEach(addEffect);
+anims.filter(function(key){return /Out/.test(key)}).forEach(addEffect);
+
 CKEDITOR.stylesSet.add( 'default',  config);
 
