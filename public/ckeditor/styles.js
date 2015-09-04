@@ -105,7 +105,7 @@ var config = [
   }
 
 ];
-var anims = ['Animation.none',"callout.bounce", "callout.shake", "callout.flash", "callout.pulse", "callout.swing", "callout.tada",
+var anims = ["callout.bounce", "callout.shake", "callout.flash", "callout.pulse", "callout.swing", "callout.tada",
   "transition.fadeIn", "transition.fadeOut",
   "transition.flipXIn", "transition.flipXOut", "transition.flipYIn", "transition.flipYOut",
   "transition.flipBounceXIn", "transition.flipBounceXOut", "transition.flipBounceYIn", "transition.flipBounceYOut",
@@ -116,11 +116,12 @@ var anims = ['Animation.none',"callout.bounce", "callout.shake", "callout.flash"
   "transition.bounceIn", "transition.bounceOut", "transition.bounceUpIn", "transition.bounceUpOut", "transition.bounceDownIn", "transition.bounceDownOut", "transition.bounceLeftIn", "transition.bounceLeftOut", "transition.bounceRightIn", "transition.bounceRightOut",
   "transition.slideUpIn", "transition.slideUpOut", "transition.slideDownIn", "transition.slideDownOut", "transition.slideLeftIn", "transition.slideLeftOut", "transition.slideRightIn", "transition.slideRightOut", "transition.slideUpBigIn", "transition.slideUpBigOut", "transition.slideDownBigIn", "transition.slideDownBigOut", "transition.slideLeftBigIn", "transition.slideLeftBigOut", "transition.slideRightBigIn", "transition.slideRightBigOut",
   "transition.perspectiveUpIn", "transition.perspectiveUpOut", "transition.perspectiveDownIn", "transition.perspectiveDownOut", "transition.perspectiveLeftIn", "transition.perspectiveLeftOut", "transition.perspectiveRightIn", "transition.perspectiveRightOut"];
-//var els = ['h1','h2','h3','h4','h5','h6','p','span','div','img','a','ul','li','ol'];
-var els = ['p'];
+var offsets = ['30%','50%','70%','90%'];
+config.push( { name: 'Animation.none', element: 'p', attributes: { 'data-velocity-effect': 'none' } } );
 anims.forEach(function(akey){
-  els.forEach(function(ekey){
-    config.push( { name: akey, element: ekey, attributes: { 'data-velocity-effect': akey=='Animation.none'?'none':akey } } );
+  config.push( { name: akey, element: 'p', attributes: { 'data-velocity-effect': akey,'data-velocity-offset': 'default' } } );
+  offsets.forEach(function(okey){
+    config.push( { name: akey+'-offset'+okey, element: 'p', attributes: { 'data-velocity-effect': akey ,'data-velocity-offset': okey} } );
   });
 });
 CKEDITOR.stylesSet.add( 'default',  config);

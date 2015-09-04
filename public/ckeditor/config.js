@@ -18,7 +18,7 @@ CKEDITOR.editorConfig = function( config ) {
     { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
     { name: 'colors', items: [ 'TextColor', 'BGColor','fonts'] }
   ];
-  config.extraAllowedContent = '*[data-velocity-effect]';
+  config.extraAllowedContent = '*[data-velocity-effect],*[data-velocity-offset]';
 };
 
 /**
