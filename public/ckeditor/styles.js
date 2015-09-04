@@ -116,7 +116,7 @@ var anims = ["callout.bounce", "callout.shake", "callout.flash", "callout.pulse"
   "transition.bounceIn", "transition.bounceOut", "transition.bounceUpIn", "transition.bounceUpOut", "transition.bounceDownIn", "transition.bounceDownOut", "transition.bounceLeftIn", "transition.bounceLeftOut", "transition.bounceRightIn", "transition.bounceRightOut",
   "transition.slideUpIn", "transition.slideUpOut", "transition.slideDownIn", "transition.slideDownOut", "transition.slideLeftIn", "transition.slideLeftOut", "transition.slideRightIn", "transition.slideRightOut", "transition.slideUpBigIn", "transition.slideUpBigOut", "transition.slideDownBigIn", "transition.slideDownBigOut", "transition.slideLeftBigIn", "transition.slideLeftBigOut", "transition.slideRightBigIn", "transition.slideRightBigOut",
   "transition.perspectiveUpIn", "transition.perspectiveUpOut", "transition.perspectiveDownIn", "transition.perspectiveDownOut", "transition.perspectiveLeftIn", "transition.perspectiveLeftOut", "transition.perspectiveRightIn", "transition.perspectiveRightOut"];
-var offsets = ['30%','50%','70%','90%'];
+var offsets = ['10%','20%','30%','40%','50%','60%','70%','80%','90%','100%'];
 config.push( { name: 'Animation.none', element: 'p', attributes: { 'data-velocity-effect': 'none' } } );
 anims.forEach(function(akey){
   config.push( { name: akey, element: 'p', attributes: { 'data-velocity-effect': akey,'data-velocity-offset': 'default' } } );
