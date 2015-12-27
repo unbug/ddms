@@ -25,13 +25,6 @@ app.use(function (req, res, next) {
   return next();
 });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine({ jsx: { harmony: true } }));
-
-// uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
