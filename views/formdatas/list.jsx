@@ -22,20 +22,35 @@ var ListHead = React.createClass({
 var ListFooter = React.createClass({
   render: function(){
     var data = this.props.data || {};
+    var first = [];
+    var last = [];
     var pre = [];
     var next = [];
     var btnStyle = {
       float: 'right'
     };
+    if(data.page>0){
+      first.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page=0'}><i className="fa fa-home"></i> &nbsp;First</a></button> );
+    }
     if((data.page-1)>=0){
-      pre.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page='+(data.page-1)}><i className="fa fa-chevron-left"></i> &nbsp;Previous</a></button> );
+      pre.push('  ');
+      pre.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page='+(data.page-1)}><i className="fa fa-chevron-circle-left"></i> &nbsp;Previous</a></button> );
     }
     if((data.page+1)<Math.ceil(data.total/data.perPage)){
-      next.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page='+(data.page+1)}>Next &nbsp;<i className="fa fa-chevron-right"></i></a></button> );
+      next.push('  ');
+      next.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page='+(data.page+1)}>Next &nbsp;<i className="fa fa-chevron-circle-right"></i></a></button> );
+
+      next.push('  ');
+      next.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page='+Math.floor(data.total/data.perPage)}><i className="glyphicon glyphicon-stop"></i> &nbsp;Last</a></button> );
     }
     return(
     <div className="row row-same-height">
-      <div  style={btnStyle}>{pre}&nbsp;&nbsp;{next}</div>
+      <div  style={btnStyle}>
+        {first}
+        {pre}
+        {next}
+        {last}
+      </div>
     </div>
     )
   }
