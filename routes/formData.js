@@ -6,7 +6,7 @@ var json2csv = require('json2csv');
 exports.showList = function (req, res, next) {
   var fid = req.params.formid;
   var page = Math.max(0, req.query.page||0);
-  var perPage = 200;
+  var perPage = 50;
   var fp = Promise.resolve( req.models.Form.findOne({_id: fid}) );
   var dp = Promise.resolve( req.models.FormData.find({form: fid})
             .limit(perPage)

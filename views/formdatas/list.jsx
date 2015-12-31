@@ -19,6 +19,27 @@ var ListHead = React.createClass({
     )
   }
 });
+var ListFooter = React.createClass({
+  render: function(){
+    var data = this.props.data || {};
+    var pre = [];
+    var next = [];
+    var btnStyle = {
+      float: 'right'
+    };
+    if((data.page-1)>=0){
+      pre.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page='+(data.page-1)}><i className="fa fa-chevron-left"></i> &nbsp;Previous</a></button> );
+    }
+    if((data.page+1)<Math.ceil(data.total/data.perPage)){
+      next.push( <button type="button" className="btn btn-outline btn-default"><a href={'/formdatas/'+data.form._id+'?page='+(data.page+1)}>Next &nbsp;<i className="fa fa-chevron-right"></i></a></button> );
+    }
+    return(
+    <div className="row row-same-height">
+      <div  style={btnStyle}>{pre}&nbsp;&nbsp;{next}</div>
+    </div>
+    )
+  }
+});
 
 var ListBody = React.createClass({
   render: function(){
@@ -76,7 +97,7 @@ module.exports = React.createClass({
               <div className="col-lg-12">
                 <div className="panel panel-default">
                   <div className="panel-heading">
-                    Data List (Total: {data.total}, Current page: {data.page}, Items per page: {data.perPage}, Total pages: {data.total%data.perPage})
+                    Data List (Total Entries: {data.total}, Total pages: {Math.ceil(data.total/data.perPage)}, Current page: {data.page}, Entries per page: {data.perPage})
                   </div>
                   {/* /.panel-heading */}
                   <div className="panel-body">
@@ -85,6 +106,7 @@ module.exports = React.createClass({
                         <ListHead data={data.form} />
                         <ListBody data={data} />
                       </table>
+                      <ListFooter data={data} />
                     </div>
                   </div>
                   {/* /.panel-body */}
@@ -101,6 +123,8 @@ module.exports = React.createClass({
             $(document).ready(function() {
               $('#dataTables-example').DataTable({
                 responsive: true,
+                paging: false,
+                searching: false,
                 order: [[ 0, 'desc' ]]
               });
             })
