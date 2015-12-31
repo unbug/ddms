@@ -60,6 +60,7 @@ var ListBody = React.createClass({
   render: function(){
     var form = this.props.data.form.schemata || [];
     var data = this.props.data.data || {};
+    var rootData = this.props.data || {};
 
     form = form.filter(function(key){
       return key.required;
@@ -73,7 +74,7 @@ var ListBody = React.createClass({
       });
       return (
         <tr>
-          <td>{data.length-dindex}</td>
+          <td>{rootData.total-rootData.perPage*rootData.page-dindex}</td>
           {flist}
           <td>{dkey.createDateTime && dkey.createDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
           <td>{dkey.updateDateTime && dkey.updateDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
