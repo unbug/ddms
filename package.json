@@ -1,6 +1,6 @@
 {
   "name": "ddms",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Data Drive Management System",
   "license": "MIT",
   "main": "bin/www",
