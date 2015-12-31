@@ -15,7 +15,7 @@ var ListBody = React.createClass({
           <td>{key.createDateTime && key.createDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
           <td>{key.updateDateTime && key.updateDateTime.toFormat('YY-MM-DD HH24:MI:SS')}</td>
           <td className="edit-td">
-            <a href={'/formdatas/'+key._id.toString()}><i className="fa fa-database fa-fw" title="edit"/>Data</a>
+            <a href={'/formdatas/'+key._id.toString()+'?page=0'}><i className="fa fa-database fa-fw" title="edit"/>Data</a>
             <a href={'/forms/update/'+key._id.toString()}><i className="fa fa-edit fa-fw" title="edit"/>Edit</a>
             <a href={'/forms/copy/'+key._id.toString()}><i className="fa fa-edit fa-copy" title="copy"/>Copy</a></td>
         </tr>

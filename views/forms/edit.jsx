@@ -20,7 +20,7 @@ module.exports = React.createClass({
               <div className="col-xs-12 col-xs-height"><h3><a href={'/forms/'+data.project}>Forms</a> / Edit form</h3></div>
               <div className="col-xs-2 col-xs-height col-middle">
                 <div className="pull-right">
-                  <a href={"/formdatas/"+data._id} className="btn btn-default btn-circle"><i className="fa fa-database"></i></a>
+                  <a href={"/formdatas/"+data._id+'?page=0'} className="btn btn-default btn-circle"><i className="fa fa-database"></i></a>
                   &nbsp;&nbsp;&nbsp;&nbsp;<a href={'/forms/delete/'+data._id} className="btn btn-default btn-circle"><i
                   className="fa fa-minus"></i></a>
                 </div>

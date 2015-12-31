@@ -5,12 +5,26 @@ var json2csv = require('json2csv');
 
 exports.showList = function (req, res, next) {
   var fid = req.params.formid;
+  var page = Math.max(0, req.query.page||0);
+  var perPage = 200;
   var fp = Promise.resolve( req.models.Form.findOne({_id: fid}) );
-  var dp = Promise.resolve( req.models.FormData.listByFormId(fid) );
+  var dp = Promise.resolve( req.models.FormData.find({form: fid})
+            .limit(perPage)
+            .skip(perPage * page)
+            .sort({_id: -1}).exec() );
+  var dcp = Promise.resolve( req.models.FormData.count({form: fid}) );
 
-  Promise.all([fp,dp])
+  Promise.all([fp,dp,dcp])
     .then(function(docs){
-      res.render('formdatas/list', {formdatas: {form: docs[0],data: docs[1]}});
+      res.render('formdatas/list', {
+        formdatas: {
+          form: docs[0],
+          data: docs[1],
+          total: docs[2],
+          page: page,
+          perPage: perPage
+        }
+      });
     }).catch(function (error) {
       return next(error);
     });

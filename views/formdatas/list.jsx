@@ -76,7 +76,7 @@ module.exports = React.createClass({
               <div className="col-lg-12">
                 <div className="panel panel-default">
                   <div className="panel-heading">
-                    Data List
+                    Data List (Total: {data.total}, Current page: {data.page}, Items per page: {data.perPage}, Total pages: {data.total%data.perPage})
                   </div>
                   {/* /.panel-heading */}
                   <div className="panel-body">
