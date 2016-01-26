@@ -22,7 +22,7 @@ image.static({
   },
   listByTags: function (tags,callback) {
     return this.find({tags: new RegExp(tags, 'i')})
-      .limit(500)
+      .limit(100)
       .sort({_id: -1})
       .exec(callback);
   }
