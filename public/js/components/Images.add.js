@@ -1,9 +1,6 @@
 ;(function(){
   var thisHost = Core.localHost;
-  var uploadHost = '';
-  var a = document.createElement('a');
-  a.href = uploadConfig.upload;
-  uploadHost = a.protocol + "//" + a.hostname + (a.port ? ':' + a.port : '');
+  var uploadHost;
 
   function getUploadConfig(){
     return window.__upload_config || {upload: '',server: ''};
@@ -14,7 +11,13 @@
     create: '/images/create/',
 
     thisHost: thisHost,
-    uploadHost: uploadHost,
+    uploadHost: function(){
+      return uploadHost || (function(){
+        var a = document.createElement('a');
+        a.href = getUploadConfig().upload;
+        return a.protocol + "//" + a.hostname + (a.port ? ':' + a.port : '');
+      }());
+    },
     serverHost: function(){
       return getUploadConfig().server;
     },
@@ -77,7 +80,7 @@
 
     function onImageUpload(link,tags){
       link = Core.localParam(link)['search']['image'];
-      link = link.replace(Actions.uploadHost,Actions.serverHost());
+      link = link.replace(Actions.uploadHost(),Actions.serverHost());
 
       beforePostCreate(link,tags,function(success){
         var res = CTRL.model.create.get();
