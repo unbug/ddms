@@ -1,11 +1,13 @@
 ;(function(){
-  var uploadConfig = window.__upload_config || {upload: '',server: ''};
   var thisHost = Core.localHost;
   var uploadHost = '';
   var a = document.createElement('a');
   a.href = uploadConfig.upload;
   uploadHost = a.protocol + "//" + a.hostname + (a.port ? ':' + a.port : '');
 
+  function getUploadConfig(){
+    return window.__upload_config || {upload: '',server: ''};
+  }
   //actions
   var Actions = {
     list: '/images/',
@@ -13,8 +15,12 @@
 
     thisHost: thisHost,
     uploadHost: uploadHost,
-    serverHost: uploadConfig.server,
-    uploadImage: uploadConfig.upload+'?redirect_url='+thisHost+'/img_upload_done.html'
+    serverHost: function(){
+      return getUploadConfig().server;
+    },
+    uploadImage: function(){
+      return getUploadConfig().upload+'?redirect_url='+thisHost+'/img_upload_done.html';
+    }
   }
   var Mdl = Core.Class.Model,
     getJSON = Core.RequestHandler.getJSON,
@@ -46,7 +52,7 @@
       addForm: $('#add_form')
     };
 
-    els.uploadForm.attr('action',Actions.uploadImage);
+    els.uploadForm.attr('action',Actions.uploadImage());
 
     els.addForm.on('click','button',function(){
       Core.Event.trigger('onAddImage',els.addForm.find('#link').val(),els.addForm.find('#tags').val());
@@ -71,7 +77,7 @@
 
     function onImageUpload(link,tags){
       link = Core.localParam(link)['search']['image'];
-      link = link.replace(Actions.uploadHost,Actions.serverHost);
+      link = link.replace(Actions.uploadHost,Actions.serverHost());
 
       beforePostCreate(link,tags,function(success){
         var res = CTRL.model.create.get();
