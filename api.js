@@ -8,7 +8,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var restify = require('express-restify-mongoose');
-var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/ddms_db';
+var dbUrl = process.env.MONGOHQ_URL || 'mongodb://localhost/ddms_db';//'mongodb://@localhost:27017/ddms_db';
 var db = mongoose.connect(dbUrl, {safe: true});
 
 var models = require('./models');
