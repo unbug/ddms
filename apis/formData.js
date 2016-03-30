@@ -1,5 +1,6 @@
 var Promise = require("bluebird");
 var jsonFormat = require('../helpers/jsonFormat');
+var URLFormat = require('../helpers/URLFormat');
 
 /**
  * getData by id
@@ -174,11 +175,12 @@ exports.postDataByFormId = function (req, res, next) {
   }
 
   if(p){
-    p.then(function(){
+    p.then(function(prs){
       if(success_url){
+        success_url = URLFormat.addQuery(success_url,{id: prs._id+''});
         res.redirect(success_url);
       }else{
-        res.jsonp(jsonFormat({},1));
+        res.jsonp(jsonFormat({id: prs._id},1));
       }
     }).catch(function (error) {
       if(failure_url){
