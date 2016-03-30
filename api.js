@@ -39,6 +39,8 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.get('/apis/v1/form', apis.form.getForm);
 
 //form data
+app.get('/apis/v1/formdata_detail', apis.formData.getDataById);
+app.post('/apis/v1/formdata_detail', apis.formData.updateData);
 app.get('/apis/v1/formdata', apis.formData.getDataByFormId);
 app.post('/apis/v1/formdata', apis.formData.postDataByFormId);
 

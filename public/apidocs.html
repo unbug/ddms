@@ -38,6 +38,12 @@
         <li>
           <a href="#api_post_formdata"> POST /formdata/</a>
         </li>
+        <li>
+          <a href="#api_get_formdata_detail"> GET /formdata_detail/</a>
+        </li>
+        <li>
+          <a href="#api_post_formdata_detail"> POST /formdata_detail/</a>
+        </li>
       </ul>
     </div>
     <!-- /.sidebar-collapse -->
@@ -52,7 +58,7 @@
         <table class="table table-bordered table-striped bs-events-table">
           <thead>
           <tr>
-            <th style="width: 15%"></th>
+            <th style="width: 18%"></th>
             <th>Description</th>
           </tr>
           </thead>
@@ -145,7 +151,7 @@
         <table class="table table-bordered table-striped bs-events-table">
           <thead>
           <tr>
-            <th style="width: 15%"></th>
+            <th style="width: 18%"></th>
             <th>Description</th>
           </tr>
           </thead>
@@ -180,7 +186,7 @@
           <tr>
             <td>Example Request</td>
             <td>
-              <code><span data-apipath></span>/formdata/?formidid=557809235f07aa3a1988491a&page=0&callback=mycallback</code>
+              <code><span data-apipath></span>/formdata/?formid=557809235f07aa3a1988491a&page=0&callback=mycallback</code>
             </td>
           </tr>
           <tr>
@@ -237,7 +243,7 @@
         <table class="table table-bordered table-striped bs-events-table">
           <thead>
           <tr>
-            <th style="width: 15%"></th>
+            <th style="width: 18%"></th>
             <th>Description</th>
           </tr>
           </thead>
@@ -275,15 +281,161 @@
             <td>
               <pre>
                 <code>
-                  &lt;iframe id=&quot;_if&quot; name=&quot;_if&quot;&gt;&lt;/iframe&gt;
-                  &lt;form target=&quot;_if&quot; method=&quot;POST&quot; action=&quot;/apis/v1/formdata/&quot;&gt;
-                    &lt;input type=&quot;text&quot; name=&quot;formid&quot; value=&quot;557809235f07aa3a1988491a&quot;/&gt;
-                    &lt;input type=&quot;text&quot; name=&quot;attribute1&quot; value=&quot;val1&quot;/&gt;
-                    &lt;input type=&quot;text&quot; name=&quot;attribute2&quot; value=&quot;val2&quot;/&gt;
-                    &lt;input type=&quot;text&quot; name=&quot;failure_url&quot; value=&quot;result.html?success=0&quot;/&gt;
-                    &lt;input type=&quot;text&quot; name=&quot;success_url&quot; value=&quot;result.html?success=1&quot;/&gt;
-                    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-                  &lt;/form&gt;
+        &lt;iframe id=&quot;_if&quot; name=&quot;_if&quot;&gt;&lt;/iframe&gt;
+        &lt;form target=&quot;_if&quot; method=&quot;POST&quot; action=&quot;/apis/v1/formdata/&quot;&gt;
+          &lt;input type=&quot;text&quot; name=&quot;formid&quot; value=&quot;557809235f07aa3a1988491a&quot;/&gt;
+          &lt;input type=&quot;text&quot; name=&quot;attribute1&quot; value=&quot;val1&quot;/&gt;
+          &lt;input type=&quot;text&quot; name=&quot;attribute2&quot; value=&quot;val2&quot;/&gt;
+          &lt;input type=&quot;text&quot; name=&quot;failure_url&quot; value=&quot;result.html?success=0&quot;/&gt;
+          &lt;input type=&quot;text&quot; name=&quot;success_url&quot; value=&quot;result.html?success=1&quot;/&gt;
+          &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+                </code>
+                </pre>
+            </td>
+          </tr>
+          <tr>
+            <td>Example Result</td>
+            <td>
+              <ul>
+                <li>success redirect to <code>result.html?success=1</code></li>
+                <li>failed redirect to<code>result.html?success=0</code></li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="api_get_formdata_detail">
+      <h3><a href="#api_get_formdata_detail">#</a>Get a form data's detail</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped bs-events-table">
+          <thead>
+          <tr>
+            <th style="width: 18%"></th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Method</td>
+            <td>GET</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td><code><span data-apipath></span>/formdata_detail/</code></td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>
+              <ul>
+                <li><code>id</code> : data id </li>
+                <li><code>callback</code> : jsonp callback</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Response formats</td>
+            <td>
+              <ul>
+                <li><code>JSON</code> without callback</li>
+                <li><code>JSONP</code></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>
+              <code><span data-apipath></span>/formdata_detail/?id=568523e508f920d049b31ad2&callback=mycallback</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Example Result</td>
+            <td>
+              <pre>
+               <code>
+                  /**/ typeof mycallback === 'function' && mycallback(
+                      {
+                        "data": {
+                          "_id": "568523e508f920d049b31ad2",
+                          "form": "557809235f07aa3a1988491a",
+                          "data": {
+                            "attribute2": "value2",
+                            "attribute1": "value1"
+                          },
+                          "__v": 0,
+                          "updateDateTime": "2015-06-11T06:52:27.499Z",
+                          "createDateTime": "2015-06-11T06:51:54.730Z"
+                        },
+                        "code": 1,
+                        "msg": "success"
+                      }
+                    );
+               </code>
+              </pre>
+              <code>"code": 0 error,1 success</code>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="api_post_formdata_detail">
+      <h3><a href="#api_post_formdata_detail">#</a>Update a form data's detail</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped bs-events-table">
+          <thead>
+          <tr>
+            <th style="width: 18%"></th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Method</td>
+            <td>POST</td>
+          </tr>
+          <tr>
+            <td>Resource URL</td>
+            <td><code><span data-apipath></span>/formdata_detail/</code></td>
+          </tr>
+          <tr>
+            <td>Parameters</td>
+            <td>
+              <ul>
+                <li><code>id</code> : data id </li>
+                <li><code>failure_url</code> : failed redirect to the url</li>
+                <li><code>success_url</code> : success redirect to the url</li>
+                <li><code>attribute name-N</code> : form's attribute name-n</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Response formats</td>
+            <td>
+              <ul>
+                <li><code>JSON</code> without callback</li>
+                <li><code>JSONP</code></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Example Request</td>
+            <td>
+              <pre>
+                <code>
+    &lt;iframe id=&quot;_if&quot; name=&quot;_if&quot;&gt;&lt;/iframe&gt;
+    &lt;form target=&quot;_if&quot; method=&quot;POST&quot; action=&quot;/apis/v1/formdata_detail/&quot;&gt;
+      &lt;input type=&quot;text&quot; name=&quot;id&quot; value=&quot;568523e508f920d049b31ad2&quot;/&gt;
+      &lt;input type=&quot;text&quot; name=&quot;attribute1&quot; value=&quot;val1&quot;/&gt;
+      &lt;input type=&quot;text&quot; name=&quot;attribute2&quot; value=&quot;val2&quot;/&gt;
+      &lt;input type=&quot;text&quot; name=&quot;failure_url&quot; value=&quot;result.html?success=0&quot;/&gt;
+      &lt;input type=&quot;text&quot; name=&quot;success_url&quot; value=&quot;result.html?success=1&quot;/&gt;
+      &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
                 </code>
                 </pre>
             </td>
