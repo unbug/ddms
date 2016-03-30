@@ -20,9 +20,10 @@ exports.getDataById = function (req, res, next) {
       .findOne(query)
       .sort({_id: -1})
       .exec(function(ferror, fres){
-        var data = jsonFormat({
-          data: fres||[]
-        });
+        var data = fres?jsonFormat({
+          data: fres
+        }):jsonFormat({},0,'not found');
+
         res.jsonp( data );
       });
   }
