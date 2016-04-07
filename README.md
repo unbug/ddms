@@ -1,7 +1,8 @@
+[![NPM](https://nodei.co/npm/ddms.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ddms/)
+
 Data Drive Management System
 =================
-DDMS is a simple express app.It provides an easy way to create complex forms,
-so you can do logical in your web pages.
+DDMS is a simple express app. It provides an easy way to create complex forms, so you can do logical in your web pages.
 
 
 ### Install dependencies
