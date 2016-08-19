@@ -56,7 +56,7 @@
   var SubItem = React.createClass({
     getInitialState: function(){
       var data = this.props.data;
-      return {name: data.name,title: data.title};
+      return {id: data.id,name: data.name,title: data.title};
     },
     notifyParent: function(){
       this.props.handleItemChange(this.props.index,this.state);
@@ -103,7 +103,8 @@
         <label className="col-xs-2 control-label">Sub fields</label>
         <div className="col-xs-10">
           {this.props.items.map(function(key,index){
-            return <SubItem index={index} data={key} handleItemRemove={handleItemRemove} handleItemChange={handleItemChange}/>
+            key.id = key.id || Core.GUID();
+            return <SubItem index={index} data={key} key={key.id} handleItemRemove={handleItemRemove} handleItemChange={handleItemChange}/>
           })}
         </div>
       </div>
@@ -113,7 +114,7 @@
   var Item = React.createClass({
     getInitialState: function(){
       var data = this.props.data;
-      return {name: data.name,title: data.title,required: data.required,child: data.child || []};
+      return {id: data.id,name: data.name,title: data.title,required: data.required,child: data.child || []};
     },
     componentDidMount: function(){
       $(this.getDOMNode()).on('click','.init-editor',handleEditor);
@@ -140,7 +141,7 @@
       this.notifyParent();
     },
     handleAddItem: function(){
-      this.state.child.push({name: '',title: '',required: true,child: []});
+      this.state.child.push({id: Core.GUID(),name: '',title: '',required: true,child: []});
       this.notifyParent();
     },
     handleItemRemove: function(index){
@@ -197,7 +198,8 @@
       return (
         <div>
           {this.props.items.map(function(key,index){
-            return <Item index={index} data={key} handleItemRemove={handleItemRemove} handleItemChange={handleItemChange}/>
+            key.id = key.id || Core.GUID();
+            return <Item index={index} data={key} key={key.id} handleItemRemove={handleItemRemove} handleItemChange={handleItemChange}/>
           })}
         </div>
       );
@@ -225,7 +227,7 @@
     },
     handleAddItem: function(){
       reloadWarning = true;
-      var nextItem = this.state.child.concat([{required: true}]);
+      var nextItem = this.state.child.concat([[{id: Core.GUID(),name: '',title: '',required: true,child: []}]]);
       this.setState({child: nextItem});
     },
     handleItemRemove: function(index){

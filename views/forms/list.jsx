@@ -83,7 +83,8 @@ module.exports = React.createClass({
         <script dangerouslySetInnerHTML={{__html:`
             $(document).ready(function() {
               $('#dataTables-example').DataTable({
-                responsive: true
+                responsive: true,
+                pageLength: 50
               });
             })
           `}}/>

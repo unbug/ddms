@@ -52,7 +52,7 @@ var LogList = React.createClass({
               $(document).ready(function() {
                 $('#dataTables-example').DataTable({
                   responsive: true,
-                  pageLength: 20,
+                  pageLength: 50,
                   order: [[ 2, 'desc' ]]
                 });
               })

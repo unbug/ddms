@@ -18,7 +18,7 @@ var util_RequestAnimationFrame, core_LocalStorage, core_Navigator, core_Subject,
       var lcst = window.localStorage;
       /**
        * 读取
-       * 
+       *
        * @method getLocalValue
        * @param {String} id item id
        * @return {String} value
@@ -32,7 +32,7 @@ var util_RequestAnimationFrame, core_LocalStorage, core_Navigator, core_Subject,
       }
       /**
        * 保存/更新
-       * 
+       *
        * @method setLocalValue
        * @param {String}|{Object} id item id
        * @param {String} val value
@@ -444,7 +444,7 @@ var util_RequestAnimationFrame, core_LocalStorage, core_Navigator, core_Subject,
     var RequestHandler = function () {
       /**
        * AJAX管理器
-       * 
+       *
        * @param Object option
        * option:{
        *  type : String 请求类型POST/GET
@@ -482,7 +482,7 @@ var util_RequestAnimationFrame, core_LocalStorage, core_Navigator, core_Subject,
           }
         });
       }
-      //end AJAXHandler       
+      //end AJAXHandler
       function JSONP(option) {
         if (!option) {
           return;
@@ -513,7 +513,7 @@ var util_RequestAnimationFrame, core_LocalStorage, core_Navigator, core_Subject,
         option.dataType = 'json';
         AJAXHandler(option);
       }
-      //end postJSON        
+      //end postJSON
       return {
         getJSON: getJSON,
         postJSON: postJSON,
@@ -661,7 +661,14 @@ var util_RequestAnimationFrame, core_LocalStorage, core_Navigator, core_Subject,
         RequestHandler: RequestHandler,
         Event: Event,
         randomList: randomList,
-        DateHandler: DateHandler
+        DateHandler: DateHandler,
+        GUID: function (len) {
+          var res = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[x]/g, function(c) {
+            var num = Math.random() *16 | 0, v = c === 'x' ? num : (num&0x3|0x8);
+            return v.toString(16);
+          });
+          return len?res.substr(0, len):res;
+        }
       };
       return _Core;
     }
